@@ -1,0 +1,31 @@
+query GetShapesByTenant($tenantId: ID!) {
+  shape {
+    getMany(tenantId: $tenantId) {
+      components {
+        config {
+          ... on ContentChunkComponentConfig {
+            components {
+              type
+              id
+            }
+          }
+        }
+        id
+        type
+      }
+      identifier
+      variantComponents {
+        config {
+          ... on ContentChunkComponentConfig {
+            components {
+              type
+              id
+            }
+          }
+        }
+        id
+        type
+      }
+    }
+  }
+}

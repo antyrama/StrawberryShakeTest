@@ -1,0 +1,1858 @@
+{
+  "data": {
+    "shape": {
+      "__typename": "ShapeQueries",
+      "getMany": [
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "icon",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "big-text",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "small-text",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "corresponds-to-text",
+              "type": "singleLine"
+            }
+          ],
+          "identifier": "achievement",
+          "variantComponents": null,
+          "id": "achievement"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "text",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "seo-metadata",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "SelectionComponentConfig"
+              },
+              "id": "page-type",
+              "type": "selection"
+            }
+          ],
+          "identifier": "anlegg",
+          "variantComponents": null,
+          "id": "anlegg"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "name",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "county",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "company-name",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "address",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "webpage-address",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "telephone",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "e-mail",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "contact-person",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "post-adress",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "opening-hours",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "additional-info",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "SelectionComponentConfig"
+              },
+              "id": "filtering",
+              "type": "selection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "lat"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "lng"
+                  }
+                ]
+              },
+              "id": "geolocation-1",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "image",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "image-description",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "detail-page-title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "detail-page-text",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "seo-metadata",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "anlegg-1",
+          "variantComponents": null,
+          "id": "anlegg-1"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "name",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "image",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "bio-text",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "linked-articles",
+              "type": "itemRelations"
+            }
+          ],
+          "identifier": "article-author",
+          "variantComponents": null,
+          "id": "article-author"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "ingres",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "hero-image",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "SelectionComponentConfig"
+              },
+              "id": "article-list-color",
+              "type": "selection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "related-products",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "SelectionComponentConfig"
+              },
+              "id": "page-type",
+              "type": "selection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "seo-metadata",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "articles",
+          "variantComponents": null,
+          "id": "articles"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "title"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "videos",
+                    "id": "video"
+                  }
+                ]
+              },
+              "id": "hero",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "stackable-content",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "seo-metadata",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "bedrift-frontpage",
+          "variantComponents": null,
+          "id": "bedrift-frontpage"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "button-name",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "button-text",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "form-submission",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "link"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "itemRelations",
+                    "id": "source"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "files",
+                    "id": "file-upload"
+                  }
+                ]
+              },
+              "id": "direct-to",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "call-to-action",
+          "variantComponents": null,
+          "id": "call-to-action"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "image",
+              "type": "images"
+            }
+          ],
+          "identifier": "campaign",
+          "variantComponents": [],
+          "id": "campaign"
+        },
+        {
+          "__typename": "Shape",
+          "components": [],
+          "identifier": "category",
+          "variantComponents": [],
+          "id": "category"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "description",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ComponentChoiceComponentConfig"
+              },
+              "id": "content",
+              "type": "componentChoice"
+            }
+          ],
+          "identifier": "collection",
+          "variantComponents": null,
+          "id": "collection"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "hero-image",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "video",
+              "type": "videos"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "intro",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "body",
+              "type": "paragraphCollection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "related-content",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "related-products",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "body-2",
+              "type": "paragraphCollection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "cta",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "author",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "pdf-files",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "published-date",
+              "type": "datetime"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "updated-date",
+              "type": "datetime"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "hide-dates",
+              "type": "boolean"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "seo-metadata",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "default-document",
+          "variantComponents": null,
+          "id": "default-document"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "brief",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "body",
+              "type": "paragraphCollection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "grid",
+              "type": "gridRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "stackable-content",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "featured-items",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "SelectionComponentConfig"
+              },
+              "id": "page-type",
+              "type": "selection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "seo-metadata",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "default-folder",
+          "variantComponents": null,
+          "id": "default-folder"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "unused-placeholder-componenet",
+              "type": "singleLine"
+            }
+          ],
+          "identifier": "empty-folder",
+          "variantComponents": [],
+          "id": "empty-folder"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "sap-id"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "sap-title"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "manufacturer-id"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "selection",
+                    "id": "web-area"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "sap-category"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "sap-subcategory"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "modified-at"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "selection",
+                    "id": "service-types"
+                  }
+                ]
+              },
+              "id": "data-from-sap",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "name",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "short-description",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "long-description",
+              "type": "paragraphCollection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "properties",
+              "type": "propertiesTable"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "accordion-header"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "paragraphCollection",
+                    "id": "accordion-panel"
+                  }
+                ]
+              },
+              "id": "accordion",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "dropdown-variant-selector"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "pick-up-restriction"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "add-to-cart-disable"
+                  }
+                ]
+              },
+              "id": "toggle",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "featured-articles-header"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "gridRelations",
+                    "id": "featured-articles-grid"
+                  }
+                ]
+              },
+              "id": "featured-articles",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "seo-metadata",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "equipment",
+          "variantComponents": [
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "sap-id"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "is-hazardous"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "isavailableforweb"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "isinactive"
+                  }
+                ]
+              },
+              "id": "data-from-sap",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "PropertiesTableComponentConfig"
+              },
+              "id": "dimensions",
+              "type": "propertiesTable"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "properties",
+              "type": "propertiesTable"
+            }
+          ],
+          "id": "equipment"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "icon",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "short-text",
+              "type": "richText"
+            }
+          ],
+          "identifier": "feature",
+          "variantComponents": null,
+          "id": "feature"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "paragraphCollection",
+                    "id": "column-1"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "paragraphCollection",
+                    "id": "column-2"
+                  }
+                ]
+              },
+              "id": "texts",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "is-on-right-side",
+              "type": "boolean"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "text"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "link"
+                  }
+                ]
+              },
+              "id": "cta",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "footer-article",
+          "variantComponents": null,
+          "id": "footer-article"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "text",
+              "type": "singleLine"
+            }
+          ],
+          "identifier": "footer-copyright",
+          "variantComponents": [],
+          "id": "footer-copyright"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "footer-social-link-name",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "footer-social-link-path",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "icon",
+              "type": "images"
+            }
+          ],
+          "identifier": "footer-social-links",
+          "variantComponents": null,
+          "id": "footer-social-links"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "hero-title"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "images",
+                    "id": "hero-image"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "videos",
+                    "id": "video"
+                  }
+                ]
+              },
+              "id": "hero",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "stackable-content-1",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "seo-metadata",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "frontpage-folder",
+          "variantComponents": null,
+          "id": "frontpage-folder"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "grid",
+              "type": "gridRelations"
+            }
+          ],
+          "identifier": "grid-collection",
+          "variantComponents": null,
+          "id": "grid-collection"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "cta",
+              "type": "boolean"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "region",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "portal-id",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "form-id",
+              "type": "singleLine"
+            }
+          ],
+          "identifier": "hubspot-form",
+          "variantComponents": [],
+          "id": "hubspot-form"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "hero-title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "hero-image",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "intro-text",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "link-text",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "body-text",
+              "type": "paragraphCollection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "image",
+              "type": "images"
+            }
+          ],
+          "identifier": "info-text",
+          "variantComponents": null,
+          "id": "info-text"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "link-text",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "link",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "image",
+              "type": "images"
+            }
+          ],
+          "identifier": "link",
+          "variantComponents": null,
+          "id": "link"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "b2b",
+              "type": "boolean"
+            }
+          ],
+          "identifier": "link-collection",
+          "variantComponents": [],
+          "id": "link-collection"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "waste-id"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "equipment-id"
+                  }
+                ]
+              },
+              "id": "data-from-sap",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "material-relationship",
+          "variantComponents": [],
+          "id": "material-relationship"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "file-name",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "FilesComponentConfig"
+              },
+              "id": "file",
+              "type": "files"
+            }
+          ],
+          "identifier": "pdf-upload",
+          "variantComponents": [],
+          "id": "pdf-upload"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "name",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "short-description",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "long-description",
+              "type": "paragraphCollection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "properties",
+              "type": "propertiesTable"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "accordion-header"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "paragraphCollection",
+                    "id": "accordion-panel"
+                  }
+                ]
+              },
+              "id": "accordion",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "necessary-accessories",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "related-products",
+              "type": "itemRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "selection",
+                    "id": "variant-attribute-key"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "dropdown-variant-selector"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "pick-up-restriction"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "add-to-cart-disable"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "isdisabledfor-web"
+                  }
+                ]
+              },
+              "id": "toggle",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "featured-articles-header"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "gridRelations",
+                    "id": "featured-articles-grid"
+                  }
+                ]
+              },
+              "id": "featured-articles",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "seo-metadata",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "sap-id"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "sap-title"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "modified-at"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "manufacturer-id"
+                  }
+                ]
+              },
+              "id": "data-from-sap",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "product",
+          "variantComponents": [
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "selection",
+                    "id": "web-area"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "isinactive"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "isavailableforweb"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "manufacturer-id"
+                  }
+                ]
+              },
+              "id": "data-from-sap",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "PropertiesTableComponentConfig"
+              },
+              "id": "dimensions",
+              "type": "propertiesTable"
+            }
+          ],
+          "id": "product"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "intro",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "hero-image",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "grids",
+              "type": "gridRelations"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "SelectionComponentConfig"
+              },
+              "id": "page-type",
+              "type": "selection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "seo-metadata",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "product-page",
+          "variantComponents": null,
+          "id": "product-page"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "meta-title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "meta-description",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "keyword"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "value"
+                  }
+                ]
+              },
+              "id": "meta-keywords",
+              "type": "contentChunk"
+            }
+          ],
+          "identifier": "seo-metadata",
+          "variantComponents": [],
+          "id": "seo-metadata"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "name",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "image",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "SelectionComponentConfig"
+              },
+              "id": "service-type",
+              "type": "selection"
+            }
+          ],
+          "identifier": "service-change",
+          "variantComponents": [],
+          "id": "service-change"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "name",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "short-description",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "long-description",
+              "type": "paragraphCollection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "FilesComponentConfig"
+              },
+              "id": "files",
+              "type": "files"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "stackable-content",
+              "type": "itemRelations"
+            }
+          ],
+          "identifier": "services-form",
+          "variantComponents": null,
+          "id": "services-form"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ItemRelationsComponentConfig"
+              },
+              "id": "article-author",
+              "type": "itemRelations"
+            }
+          ],
+          "identifier": "test",
+          "variantComponents": [],
+          "id": "test"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "video",
+              "type": "videos"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "placeholder-image",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "short-text",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "SelectionComponentConfig"
+              },
+              "id": "video-side",
+              "type": "selection"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "link",
+              "type": "singleLine"
+            }
+          ],
+          "identifier": "text-and-video",
+          "variantComponents": null,
+          "id": "text-and-video"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "title",
+              "type": "singleLine"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "short-description",
+              "type": "richText"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "image",
+              "type": "images"
+            }
+          ],
+          "identifier": "theme",
+          "variantComponents": [],
+          "id": "theme"
+        },
+        {
+          "__typename": "Shape",
+          "components": [
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "sap-id"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "selection",
+                    "id": "web-area"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "datetime",
+                    "id": "lastchangedtimestamp"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "sap-category"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "sap-description"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "hazardous-waste"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "boolean",
+                    "id": "availableforweb"
+                  }
+                ]
+              },
+              "id": "data-from-sap",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "thumbnail-image",
+              "type": "images"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": {
+                "__typename": "ContentChunkComponentConfig",
+                "components": [
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "singleLine",
+                    "id": "name"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "richText",
+                    "id": "short-description"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "images",
+                    "id": "image"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "paragraphCollection",
+                    "id": "body"
+                  },
+                  {
+                    "__typename": "ShapeComponent",
+                    "type": "itemRelations",
+                    "id": "stackable-content"
+                  }
+                ]
+              },
+              "id": "info",
+              "type": "contentChunk"
+            },
+            {
+              "__typename": "ShapeComponent",
+              "config": null,
+              "id": "generate-pdf",
+              "type": "boolean"
+            }
+          ],
+          "identifier": "waste-type",
+          "variantComponents": null,
+          "id": "waste-type"
+        }
+      ]
+    }
+  }
+}

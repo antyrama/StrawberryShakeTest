@@ -1,0 +1,3898 @@
+type AcceptedContentType {
+  contentType: String!
+  extensionLabel: String
+}
+
+input AcceptedContentTypeInput {
+  contentType: String!
+  extensionLabel: String
+}
+
+type AccessToken {
+  createdAt: DateTime!
+  id: String!
+  lastUsed: DateTime
+  name: String
+  secret: String
+  userId: ID!
+}
+
+type AccessTokenMutations {
+  create(input: CreateAccessTokenInput!, userId: ID!): AccessToken!
+  delete(id: String!): Int!
+}
+
+input AddLanguageInput {
+  code: String!
+  name: String!
+}
+
+type Address {
+  city: String
+  country: String
+  email: EmailAddress
+  firstName: String
+  id: String
+  lastName: String
+  middleName: String
+  phone: String
+  postalCode: String
+  state: String
+  street: String
+  street2: String
+  streetNumber: String
+  type: AddressType!
+}
+
+input AddressInput {
+  city: String
+  country: String
+  email: EmailAddress
+  firstName: String
+  lastName: String
+  middleName: String
+  phone: String
+  postalCode: String
+  state: String
+  street: String
+  street2: String
+  streetNumber: String
+  type: AddressType!
+}
+
+enum AddressType {
+  billing
+  delivery
+  other
+}
+
+type WasteType implements Item {
+  components: [Component!]
+  createdAt: DateTime
+  externalReference: String
+  hasVersion(versionLabel: VersionLabel): Boolean
+  id: ID!
+  language: String!
+  name: String
+  description: String
+  categoryDescription: String
+  materialWebArea: String
+  isHazardousWaste: String
+  availableForWeb: String
+  lastChangedTimestamp: DateTime,
+  shape: Shape
+  tenantId: ID!
+  topics: [Topic!]
+  tree: TreeNode
+  type: ItemType! 
+  version: VersionedRecordInfo  
+  updatedAt: DateTime
+  relatingItems: [Item!]
+}
+
+type MaterialRelationship implements Item {
+  components: [Component!]
+  createdAt: DateTime
+  externalReference: String
+  hasVersion(versionLabel: VersionLabel): Boolean
+  id: ID!
+  language: String!
+  name: String 
+  shape: Shape
+  tenantId: ID!
+  topics: [Topic!]
+  tree: TreeNode
+  type: ItemType! 
+  version: VersionedRecordInfo  
+  updatedAt: DateTime
+  relatingItems: [Item!]
+  equipmentId: String!
+  wasteId: String!
+}
+
+type ApiCallMetrics implements IObjectMetrics {
+  count(end: DateTime, start: DateTime): Int!
+}
+
+type App {
+  baseUrl: String!
+  createdAt: DateTime!
+  identifier: String!
+  name: String!
+  sessionUrl: String!
+  tenant: Tenant
+  tenantId: ID!
+  updatedAt: DateTime
+}
+
+type AppConnection {
+  edges: [AppConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type AppConnectionEdge {
+  cursor: String!
+  node: App!
+}
+
+input AppListFilter {
+  tenantId: ID!
+}
+
+input AppListSortOptions {
+  direction: SortDirection = asc
+  field: ImageSortField = createdAt
+}
+
+type AppMutations {
+  create(input: CreateAppInput!): App!
+  delete(identifier: String!, tenantId: ID!): Int!
+  update(identifier: String!, input: UpdateAppInput!, tenantId: ID!): App!
+}
+
+type AppQueries {
+  get(identifier: String!, tenantId: ID!): App
+  getMany(
+    after: String
+    before: String
+    filter: AppListFilter!
+    first: Int
+    last: Int
+    sort: AppListSortOptions
+  ): AppConnection!
+}
+
+enum AuthenticationMethod {
+  accessTokenPair
+  none
+  staticToken
+}
+
+enum BandwidthUnit {
+  Bytes
+  GiB
+  KiB
+  MiB
+}
+
+type BandwidthUsageMetrics {
+  total(
+    end: DateTime
+    start: DateTime
+    type: BandwidthUsageType
+    unit: BandwidthUnit! = MiB
+  ): Float!
+}
+
+enum BandwidthUsageType {
+  ApiCall
+  Media
+}
+
+type BooleanContent {
+  value: Boolean
+}
+
+input BooleanContentInput {
+  value: Boolean!
+}
+
+input BulkCreateDocumentInput {
+  components: [ComponentInput!]
+  createdAt: DateTime
+  externalReference: String
+  name: String!
+  topicIds: [ID!]
+  tree: TreeNodeInput
+}
+
+input BulkCreateFolderInput {
+  components: [ComponentInput!]
+  createdAt: DateTime
+  externalReference: String
+  name: String!
+  topicIds: [ID!]
+  tree: TreeNodeInput
+}
+
+input BulkCreateProductInput {
+  components: [ComponentInput!]
+  createdAt: DateTime
+  externalReference: String
+  name: String!
+  topicIds: [ID!]
+  tree: TreeNodeInput
+  variants: [CreateProductVariantInput!]!
+  vatTypeId: ID!
+}
+
+
+
+input BulkCreateShapeInput {
+  components: [ShapeComponentInput!]
+  identifier: String
+  meta: [KeyValuePairInput!]
+  name: String!
+  type: ShapeType!
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  variantComponents: [ShapeComponentInput!]
+}
+
+input BulkCreateTenantInput {
+  createdAt: DateTime
+  defaults: TenantDefaultsInput
+  identifier: String!
+  isActive: Boolean
+  isTrial: Boolean
+  logo: ImageInput
+  name: String!
+  shapes: [BulkCreateShapeInput!]
+  vatTypes: [BulkCreateVatTypeInput!]
+}
+
+input BulkCreateTopicInput {
+  children: [CreateChildTopicInput!]
+  name: String!
+  parentId: ID
+  pathIdentifier: String
+}
+
+input BulkCreateUserInput {
+  companyName: String
+  email: String
+  firstName: String
+  isAdmin: Boolean
+  lastName: String
+  marketingEmailConsentedAt: DateTime
+  sub: String
+  tocReadAt: DateTime
+}
+
+input BulkCreateVatTypeInput {
+  name: String!
+  percent: Float!
+  tenantId: ID!
+}
+
+type CashPayment implements PaymentType {
+  cash: String
+  provider: PaymentProvider!
+}
+
+input CashPaymentInput {
+  cash: String
+}
+
+type Component {
+  componentId: String!
+  content: ComponentContent
+  name: String!
+  type: ComponentType!
+}
+
+type ComponentChoiceComponentConfig {
+  choices: [ShapeComponent!]!
+}
+
+input ComponentChoiceComponentConfigInput {
+  choices: [ShapeComponentInput!]!
+}
+
+type ComponentChoiceContent {
+  selectedComponent: Component!
+}
+
+union ComponentConfig =
+    ComponentChoiceComponentConfig
+  | ContentChunkComponentConfig
+  | FilesComponentConfig
+  | ItemRelationsComponentConfig
+  | NumericComponentConfig
+  | PropertiesTableComponentConfig
+  | SelectionComponentConfig
+
+input ComponentConfigInput {
+  componentChoice: ComponentChoiceComponentConfigInput
+  contentChunk: ContentChunkComponentConfigInput
+  files: FilesComponentConfigInput
+  itemRelations: ItemRelationsComponentConfigInput
+  numeric: NumericComponentConfigInput
+  propertiesTable: PropertiesTableComponentConfigInput
+  selection: SelectionComponentConfigInput
+}
+
+union ComponentContent =
+    BooleanContent
+  | ComponentChoiceContent
+  | ContentChunkContent
+  | DatetimeContent
+  | FileContent
+  | GridRelationsContent
+  | ImageContent
+  | ItemRelationsContent
+  | LocationContent
+  | NumericContent
+  | ParagraphCollectionContent
+  | PropertiesTableContent
+  | RichTextContent
+  | SelectionContent
+  | SingleLineContent
+  | VideoContent
+
+input ComponentInput {
+  boolean: BooleanContentInput
+  componentChoice: ComponentInput
+  componentId: String!
+  contentChunk: ContentChunkContentInput
+  datetime: DatetimeContentInput
+  files: [FileInput!]
+  gridRelations: GridRelationsContentInput
+  images: [ImageInput!]
+  itemRelations: ItemRelationsContentInput
+  location: LocationContentInput
+  numeric: NumericComponentContentInput
+  paragraphCollection: ParagraphCollectionContentInput
+  propertiesTable: PropertiesTableContentInput
+  richText: RichTextContentInput
+  selection: SelectionComponentContentInput
+  singleLine: SingleLineContentInput
+  videos: [VideoInput!]
+}
+
+enum ComponentType {
+  boolean
+  componentChoice
+  contentChunk
+  datetime
+  files
+  gridRelations
+  images
+  itemRelations
+  location
+  numeric
+  paragraphCollection
+  propertiesTable
+  richText
+  selection
+  singleLine
+  videos
+}
+
+type ContentChunkComponentConfig {
+  components: [ShapeComponent!]!
+  repeatable: Boolean!
+}
+
+input ContentChunkComponentConfigInput {
+  components: [ShapeComponentInput!]!
+  repeatable: Boolean
+}
+
+type ContentChunkContent {
+  chunks: [[Component!]!]!
+}
+
+input ContentChunkContentInput {
+  chunks: [[ComponentInput!]!]!
+}
+
+input ContractSubscriptionPlanReferenceInput {
+  identifier: String!
+  periodId: ID!
+}
+
+input CreateAccessTokenInput {
+  name: String
+}
+
+input CreateAppInput {
+  baseUrl: String!
+  identifier: String
+  name: String!
+  tenantId: ID!
+}
+
+input CreateChildTopicInput {
+  children: [CreateChildTopicInput!]
+  name: String!
+  pathIdentifier: String
+}
+
+input CreateCustomerAddressInput {
+  city: String
+  country: String
+  email: EmailAddress
+  firstName: String
+  lastName: String
+  middleName: String
+  phone: String
+  postalCode: String
+  state: String
+  street: String
+  street2: String
+  streetNumber: String
+  type: AddressType!
+}
+
+input CreateCustomerInput {
+  addresses: [CreateCustomerAddressInput!]
+  companyName: String
+  email: String
+  externalReferences: [KeyValuePairInput!]
+  firstName: String!
+  identifier: String
+  lastName: String!
+  meta: [KeyValuePairInput!]
+  middleName: String
+  phone: String
+  taxNumber: String
+  tenantId: ID!
+}
+
+"""
+Creates a new document. Note that the shapeId input has been deprecated and will be removed in a future release.
+"""
+input CreateDocumentInput {
+  components: [ComponentInput!]
+  createdAt: DateTime
+  externalReference: String
+  name: String!
+  shapeId: ID
+  shapeIdentifier: String
+  tenantId: ID!
+  topicIds: [ID!]
+  tree: TreeNodeInput
+}
+
+input CreateFolderInput {
+  components: [ComponentInput!]
+  createdAt: DateTime
+  externalReference: String
+  name: String!
+  shapeIdentifier: String
+  tenantId: ID!
+  topicIds: [ID!]
+  tree: TreeNodeInput
+}
+
+input CreateGridInput {
+  meta: [KeyValuePairInput!]
+  name: String!
+  rows: [GridRowInput!]
+  tenantId: ID!
+}
+
+input CreateMarketInput {
+  customerIdentifiers: [String!]
+  identifier: String!
+  name: String!
+  tenantId: ID!
+}
+
+input CreatePipelineInput {
+  name: String!
+  stages: [CreatePipelineStageInput!]
+  tenantId: ID!
+}
+
+input CreatePipelineStageInput {
+  name: String!
+  placeNewOrders: Boolean
+}
+
+input CreatePriceListInput {
+  endDate: DateTime
+  identifier: String!
+  modifierType: PriceListModifierType!
+  name: String!
+  priceVariants: [PriceListPriceVariantReferenceInput!]
+  selectedProductVariants: CreatePriceListSelectedProductVariantsInput!
+  startDate: DateTime
+  targetAudience: CreatePriceListTargetAudienceInput!
+  tenantId: ID!
+}
+
+input CreatePriceListProductVariant {
+  priceVariants: [PriceListProductPriceVariantReference!]
+  sku: String!
+}
+
+input CreatePriceListSelectedProductVariantsInput {
+  type: PriceListProductSelectionType!
+  variants: [CreatePriceListProductVariant!]
+}
+
+input CreatePriceListTargetAudienceInput {
+  marketIdentifiers: [String]
+  type: PriceListTargetAudienceType!
+}
+
+input CreatePriceVariantInput {
+  currency: String
+  identifier: String!
+  name: String
+  tenantId: ID!
+}
+
+input CreateProductInput {
+  components: [ComponentInput!]
+  createdAt: DateTime
+  externalReference: String
+  name: String!
+  shapeIdentifier: String
+  tenantId: ID!
+  topicIds: [ID!]
+  tree: TreeNodeInput
+  variants: [CreateProductVariantInput!]!
+  vatTypeId: ID!
+}
+
+input CreateProductSubscriptionAddressInput {
+  city: String
+  country: String
+  email: EmailAddress
+  firstName: String
+  lastName: String
+  middleName: String
+  phone: String
+  postalCode: String
+  state: String
+  street: String
+  street2: String
+  streetNumber: String
+  type: AddressType!
+}
+
+input CreateProductSubscriptionInput {
+  addresses: [CreateProductSubscriptionAddressInput!]
+  customerIdentifier: String!
+  initial: CreateProductSubscriptionPhaseInput
+  item: CreateProductSubscriptionItemInput!
+  meteredVariables: [CreateProductSubscriptionMeteredVariableInput!]
+  payment: PaymentInput
+  recurring: CreateProductSubscriptionPhaseInput!
+  status: CreateProductSubscriptionStatusInput!
+  subscriptionPlan: ProductSubscriptionPlanReferenceInput!
+  tenantId: ID!
+}
+
+input CreateProductSubscriptionItemInput {
+  imageUrl: String
+  meta: [KeyValuePairInput!]
+  name: String!
+  sku: String!
+}
+
+input CreateProductSubscriptionMeteredVariableInput {
+  id: ID!
+  tierType: TierType!
+  tiers: [CreateProductSubscriptionMeteredVariableTierInput!]!
+}
+
+input CreateProductSubscriptionMeteredVariableTierInput {
+  currency: String!
+  price: Float!
+  threshold: Int!
+}
+
+input CreateProductSubscriptionPhaseInput {
+  currency: String!
+  price: Float!
+}
+
+input CreateProductSubscriptionStatusInput {
+  activeUntil: DateTime
+  currency: String!
+  price: Float!
+  renewAt: DateTime
+}
+
+input CreateProductVariantInput {
+  attributes: [ProductVariantAttributeInput!]
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  components: [ComponentInput!]
+  externalReference: String
+  images: [ImageInput!]
+  isDefault: Boolean!
+  name: String
+  price: Float
+  priceVariants: [PriceVariantReferenceInput!]
+  sku: String!
+  stock: Int
+  stockLocations: [StockLocationReferenceInput!]
+  subscriptionPlans: [SubscriptionPlanReferenceInput!]
+  videos: [VideoInput!]
+}
+
+input CreateShapeInput {
+  components: [ShapeComponentInput!]
+  identifier: String
+  meta: [KeyValuePairInput!]
+  name: String!
+  tenantId: ID!
+  type: ShapeType!
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  variantComponents: [ShapeComponentInput!]
+}
+
+input CreateStockLocationInput {
+  identifier: String!
+  name: String!
+  settings: StockLocationSettingsInput
+  tenantId: ID!
+}
+
+input CreateSubscriptionContractAddressInput {
+  city: String
+  country: String
+  email: EmailAddress
+  firstName: String
+  lastName: String
+  middleName: String
+  phone: String
+  postalCode: String
+  state: String
+  street: String
+  street2: String
+  streetNumber: String
+  type: AddressType!
+}
+
+input CreateSubscriptionContractInput {
+  addresses: [CreateSubscriptionContractAddressInput!]
+  customerIdentifier: String!
+  initial: CreateSubscriptionContractPhaseInput
+  item: CreateSubscriptionContractItemInput!
+  payment: PaymentInput
+  recurring: CreateSubscriptionContractPhaseInput!
+  status: CreateSubscriptionContractStatusInput!
+  subscriptionPlan: ContractSubscriptionPlanReferenceInput!
+  tenantId: ID!
+}
+
+input CreateSubscriptionContractItemInput {
+  imageUrl: String
+  meta: [KeyValuePairInput!]
+  name: String!
+  sku: String!
+}
+
+input CreateSubscriptionContractMeteredVariableReferenceInput {
+  id: ID!
+  tierType: TierType!
+  tiers: [CreateSubscriptionContractMeteredVariableTierInput!]!
+}
+
+input CreateSubscriptionContractMeteredVariableTierInput {
+  currency: String!
+  price: Float!
+  threshold: Int!
+}
+
+input CreateSubscriptionContractPhaseInput {
+  currency: String!
+  meteredVariables: [CreateSubscriptionContractMeteredVariableReferenceInput!]
+  price: Float!
+}
+
+input CreateSubscriptionContractStatusInput {
+  activeUntil: DateTime
+  currency: String!
+  price: Float!
+  renewAt: DateTime
+}
+
+input CreateSubscriptionPlanInput {
+  identifier: String!
+  meteredVariables: [SubscriptionPlanMeteredVariableInput!]
+  name: String
+  periods: [SubscriptionPlanPeriodInput!]!
+  tenantId: ID!
+}
+
+input CreateTenantInput {
+  createdAt: DateTime
+  defaults: TenantDefaultsInput
+  identifier: String!
+  isActive: Boolean
+  isTrial: Boolean
+  logo: ImageInput
+  meta: [KeyValuePairInput!]
+  name: String!
+  shapes: [BulkCreateShapeInput!]
+  vatTypes: [BulkCreateVatTypeInput!]
+}
+
+input CreateTopicInput {
+  children: [CreateChildTopicInput!]
+  name: String!
+  parentId: ID
+  pathIdentifier: String
+  tenantId: ID!
+}
+
+input CreateUserInput {
+  companyName: String
+  email: String
+  firstName: String
+  isAdmin: Boolean
+  lastName: String
+  marketingEmailConsentedAt: DateTime
+  sub: [String!]!
+  tocReadAt: DateTime
+}
+
+input CreateVatTypeInput {
+  name: String!
+  percent: Float!
+  tenantId: ID!
+}
+
+input CreateWebhookInput {
+  concern: String!
+  event: String!
+  graphqlQuery: String
+  headers: [WebhookHeaderInput!]
+  method: HttpMethod!
+  name: String!
+  tenantId: ID!
+  url: String!
+}
+
+input CreateWebhookInvocationInput {
+  end: DateTime
+  payload: JSON
+  responseBody: JSON
+  responseStatus: Int
+  start: DateTime
+}
+
+type CurrencySummary {
+  currency: String
+  value: Float
+}
+
+type CurrencySummaryReport {
+  orders(
+    direction: SortDirection
+    end: DateTime
+    orderBy: Parameter
+    start: DateTime
+    tenantId: ID!
+  ): [CurrencySummary]!
+  sales(
+    direction: SortDirection
+    end: DateTime
+    orderBy: Parameter
+    start: DateTime
+    tenantId: ID!
+  ): [CurrencySummary]!
+}
+
+type CustomPayment implements PaymentType {
+  properties: [CustomProperties!]
+  provider: PaymentProvider!
+}
+
+input CustomPaymentInput {
+  properties: [CustomPropertiesInput!]
+}
+
+type CustomProperties {
+  property: String!
+  value: String
+}
+
+input CustomPropertiesInput {
+  property: String!
+  value: String
+}
+
+type Customer {
+  addresses: [Address!]
+  birthDate: Date
+  companyName: String
+  email: String
+  externalReference(key: String!): String
+  externalReferences: [KeyValuePair!]
+  firstName: String
+  identifier: String
+  lastName: String
+  meta: [KeyValuePair!]
+  metaProperty(key: String!): String
+  middleName: String
+  phone: String
+  taxNumber: String
+  tenantId: ID
+}
+
+type CustomerConnection {
+  edges: [CustomerConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type CustomerConnectionEdge {
+  cursor: String!
+  node: Customer!
+}
+
+input CustomerExternalReferenceInput {
+  key: String!
+  value: String!
+}
+
+input CustomerInput {
+  addresses: [AddressInput!]
+  birthDate: DateTime
+  companyName: String
+  firstName: String
+  identifier: String
+  lastName: String
+  middleName: String
+  taxNumber: String
+}
+
+type CustomerMutations {
+  create(input: CreateCustomerInput!): Customer!
+  createAddress(
+    identifier: String!
+    input: CreateCustomerAddressInput!
+    tenantId: ID!
+  ): Customer!
+  delete(
+    deleteSubscriptionContracts: Boolean = false
+    identifier: String!
+    tenantId: ID!
+  ): Int!
+  deleteAddress(addressId: String!, identifier: String!, tenantId: ID!): Int!
+  setMetadata(
+    identifier: String!
+    key: String!
+    tenantId: ID!
+    value: String!
+  ): Customer!
+  update(
+    identifier: String!
+    input: UpdateCustomerInput!
+    tenantId: ID!
+  ): Customer!
+  updateAddress(
+    addressId: String!
+    identifier: String!
+    input: UpdateCustomerAddressInput!
+    tenantId: ID!
+  ): Customer!
+}
+
+type CustomerQueries {
+  get(
+    externalReference: CustomerExternalReferenceInput
+    identifier: String
+    tenantId: ID!
+  ): Customer
+  getMany(
+    after: String
+    before: String
+    first: Int = 20
+    identifier: ID
+    last: Int
+    meta: [KeyValuePairInput!]
+    tenantId: ID!
+  ): CustomerConnection
+}
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DatetimeContent {
+  datetime: DateTime
+}
+
+input DatetimeContentInput {
+  datetime: DateTime
+}
+
+input DigitalAssetManagementPreferencesInput {
+  enabled: Boolean
+}
+
+type DigitalAssetPreferences {
+  enabled: Boolean
+}
+
+type Discount {
+  percent: Float
+}
+
+input DiscountInput {
+  percent: Float
+}
+
+type Document implements Item {
+  components: [Component!]
+  createdAt: DateTime
+  externalReference: String
+  hasVersion(versionLabel: VersionLabel): Boolean
+  id: ID!
+  language: String!
+  name: String
+  relatingItems: [Item!]
+  shape: Shape
+  tenantId: ID!
+  topics: [Topic!]
+  tree: TreeNode
+  type: ItemType!
+  updatedAt: DateTime
+  version: VersionedRecordInfo
+}
+
+type DocumentMutations {
+  create(input: CreateDocumentInput!, language: String!): Document!
+  delete(id: ID!): Int!
+  publish(
+    id: ID!
+    includeDescendants: Boolean = false
+    language: String!
+  ): PublishInfo!
+  unpublish(
+    id: ID!
+    includeDescendants: Boolean = false
+    language: String!
+  ): PublishInfo
+  update(id: ID!, input: UpdateDocumentInput!, language: String!): Document!
+}
+
+type DocumentQueries {
+  get(
+    id: ID!
+    language: String!
+    versionLabel: VersionLabel! = current
+  ): Document
+}
+
+scalar EmailAddress
+
+type ExperimentalPreferenceEnabled {
+  enabled: Boolean
+}
+
+input ExperimentalPreferenceEnabledInput {
+  enabled: Boolean
+}
+
+type ExperimentalPreferences {
+  componentsOnVariants: ExperimentalPreferenceEnabled
+    @deprecated(reason: "Replaced by get with componentsOnVariants")
+  dam: DigitalAssetPreferences @deprecated(reason: "Replaced by get with dam")
+  get(name: String!): Preference
+  nerdyView: NerdyViewPreferences
+    @deprecated(reason: "Replaced by get with nerdyView")
+}
+
+input ExperimentalPreferencesInput {
+  componentsOnVariants: ExperimentalPreferenceEnabledInput
+  dam: DigitalAssetManagementPreferencesInput
+  nerdyView: NerdyViewPreferencesInput
+}
+
+type File {
+  contentType: String
+  key: String!
+  meta: [KeyValuePair!]
+  metaProperty(key: String!): String
+  size: Float
+  title: String
+  url: String!
+}
+
+type FileContent {
+  files: [File!]
+}
+
+input FileContentInput {
+  files: [FileInput!]
+}
+
+input FileInput {
+  key: String!
+  meta: [KeyValuePairInput!]
+  title: String
+}
+
+type FileQueries {
+  get(key: String!): File
+}
+
+type FileSize {
+  size: Float!
+  unit: FileSizeUnit!
+}
+
+enum FileSizeUnit {
+  Bytes
+  GiB
+  KiB
+  MiB
+}
+
+type FileUploadMutations {
+  generatePresignedRequest(
+    contentType: String!
+    filename: String!
+    tenantId: ID!
+    type: FileUploadType! = MEDIA
+  ): PresignedUploadRequest!
+}
+
+enum FileUploadType {
+  MEDIA
+  STATIC
+}
+
+type FilesComponentConfig {
+  acceptedContentTypes: [AcceptedContentType!]
+  max: Int
+  maxFileSize: FileSize
+  min: Int
+}
+
+input FilesComponentConfigInput {
+  acceptedContentTypes: [AcceptedContentTypeInput!]
+  max: Int
+  maxFileSize: MaxFileSizeInput
+  min: Int
+}
+
+type Folder implements Item {
+  components: [Component!]
+  createdAt: DateTime
+  externalReference: String
+  hasVersion(versionLabel: VersionLabel): Boolean
+  id: ID!
+  language: String!
+  name: String
+  relatingItems: [Item!]
+  shape: Shape
+  tenantId: ID!
+  topics: [Topic!]
+  tree: TreeNode
+  type: ItemType!
+  updatedAt: DateTime
+  version: VersionedRecordInfo
+}
+
+type FolderMutations {
+  create(input: CreateFolderInput!, language: String!): Folder!
+  delete(id: ID!): Int!
+  publish(
+    id: ID!
+    includeDescendants: Boolean = false
+    language: String!
+  ): PublishInfo!
+  unpublish(
+    id: ID!
+    includeDescendants: Boolean = false
+    language: String!
+  ): PublishInfo
+  update(id: ID!, input: UpdateFolderInput!, language: String!): Folder!
+}
+
+type FolderQueries {
+  get(id: ID!, language: String!, versionLabel: VersionLabel! = current): Folder
+}
+
+input FullTreeNodeInput {
+  itemId: ID!
+  parentId: ID!
+  position: PositiveInt
+}
+
+input GenericPublishInput {
+  id: ID!
+  type: ShapeType!
+}
+
+type GenericSuggestSearchResult implements SuggestSearchResult {
+  id: ID!
+  name: String!
+  path: String!
+  tenantId: ID!
+  type: String!
+}
+
+input GetTopicByPathArguments {
+  path: String!
+  tenantId: ID!
+}
+
+type Grid {
+  createdAt: DateTime!
+  hasVersion(versionLabel: VersionLabel): Boolean!
+  id: ID!
+  language: String!
+  meta: [KeyValuePair!]
+  metaProperty(key: String!): String
+  name: String
+  rows: [GridRow!]!
+  tenantId: ID!
+  updatedAt: DateTime
+  version: VersionedRecordInfo
+}
+
+type GridColumn {
+  item: Item
+  itemId: ID
+  itemType: String
+  layout: GridColumnLayout
+  meta: [KeyValuePair!]
+  metaProperty(key: String!): String
+}
+
+input GridColumnInput {
+  itemId: ID
+  layout: GridLayoutInput
+  meta: [KeyValuePairInput!]
+}
+
+type GridColumnLayout {
+  colspan: Int
+  rowspan: Int
+}
+
+input GridLayoutInput {
+  colspan: Int
+  rowspan: Int
+}
+
+type GridMutations {
+  create(input: CreateGridInput!, language: String!): Grid!
+  delete(id: ID!): Int!
+  publish(id: ID!, language: String!): GridPublishInfo!
+  unpublish(id: ID!, language: String!): GridPublishInfo
+  update(id: ID!, input: UpdateGridInput!, language: String!): Grid!
+}
+
+type GridPublishInfo {
+  id: ID!
+  versionId: ID!
+}
+
+type GridQueries {
+  get(id: ID!, language: String!, versionLabel: VersionLabel! = current): Grid
+  getMany(
+    language: String!
+    tenantId: ID
+    versionLabel: VersionLabel! = current
+  ): [Grid!]
+}
+
+type GridRelationsContent {
+  grids: [Grid!]
+}
+
+input GridRelationsContentInput {
+  gridIds: [ID!]
+}
+
+type GridRow {
+  columns: [GridColumn!]!
+  meta: [KeyValuePair!]
+  metaProperty(key: String!): String
+}
+
+input GridRowInput {
+  columns: [GridColumnInput!]
+  meta: [KeyValuePairInput!]
+}
+
+enum HttpMethod {
+  DELETE
+  GET
+  PATCH
+  POST
+  PUT
+}
+
+interface IObjectMetrics {
+  count(end: DateTime, start: DateTime): Int!
+}
+
+interface IObjectReports {
+  avg(
+    direction: SortDirection = asc
+    end: DateTime
+    limit: Int
+    orderBy: Parameter = VALUE
+    resolution: Interval = DAILY
+    start: DateTime
+  ): [ReportMetric]!
+  sum(
+    direction: SortDirection = asc
+    end: DateTime
+    limit: Int
+    orderBy: Parameter = VALUE
+    resolution: Interval = DAILY
+    start: DateTime
+  ): [ReportMetric]!
+  total(end: DateTime, start: DateTime): Float!
+}
+
+type IdentifierSuggestion {
+  isAvailable: Boolean!
+  suggestion: String!
+}
+
+type Image {
+  altText: String
+  caption: RichTextContent
+  key: String!
+  meta: [KeyValuePair!]
+  metaProperty(key: String!): String
+  mimeType: String
+  url: String
+  variants: [ImageVariant!]
+}
+
+type ImageConnection {
+  edges: [ImageConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type ImageConnectionEdge {
+  cursor: String!
+  node: Image!
+}
+
+type ImageContent {
+  images: [Image!]
+}
+
+input ImageFilterInput {
+  topicIds: [ID!]
+}
+
+input ImageInput {
+  altText: String
+  caption: RichTextContentInput
+  key: String!
+  meta: [KeyValuePairInput!]
+  mimeType: String
+}
+
+type ImageMutations {
+  delete(key: String!, tenantId: ID!): Int!
+  registerImage(key: String!, tenantId: ID!): Image
+  registerVariants(
+    key: String!
+    upsert: Boolean
+    variants: [ImageVariantInput!]!
+  ): Image
+  update(input: UpdateImageInput!, key: String!, language: String!): Image!
+}
+
+type ImageQueries {
+  get(key: String!, language: String): Image
+  getItems(
+    after: String
+    before: String
+    first: Int = 20
+    key: String!
+    language: String!
+    last: Int
+    tenantId: ID!
+    versionLabel: VersionLabel! = current
+  ): ItemConnection
+  getMany(
+    after: String
+    before: String
+    filter: ImageFilterInput
+    first: Int = 20
+    language: String!
+    last: Int
+    sort: SortDirection = desc
+    sortField: ImageSortField = createdAt
+    tenantId: ID!
+  ): ImageConnection
+  getTopics(
+    after: String
+    before: String
+    first: Int = 20
+    key: String!
+    language: String!
+    last: Int
+    tenantId: ID!
+  ): TopicConnection
+}
+
+enum ImageSortField {
+  createdAt
+}
+
+type ImageVariant {
+  height: Int!
+  key: String!
+  size: Int
+  url: String!
+  width: Int!
+}
+
+input ImageVariantInput {
+  height: Int!
+  key: String!
+  size: Int
+  width: Int!
+}
+
+enum Interval {
+  ANNUALLY
+  DAILY
+  HOURLY
+  MONTHLY
+}
+
+type InviteToken {
+  createdAt: DateTime!
+  createdBy: ID
+  createdByUser: User
+  expiresAt: DateTime
+  id: ID!
+  redeemedAt: DateTime
+  redeemedBy: ID!
+  redeemedByUser: User
+  tenant: Tenant!
+  tenantId: ID!
+  token: ID!
+}
+
+type InviteTokenMutations {
+  create(expiresAt: DateTime, tenantId: ID!): InviteToken!
+  redeem(token: ID!): InviteToken!
+}
+
+interface Item {
+  components: [Component!]
+  createdAt: DateTime
+  externalReference: String
+  hasVersion(versionLabel: VersionLabel): Boolean
+  id: ID!
+  language: String!
+  name: String
+  relatingItems: [Item!]
+  shape: Shape
+  tenantId: ID!
+  topics: [Topic!]
+  tree: TreeNode
+  type: ItemType!
+  updatedAt: DateTime
+  version: VersionedRecordInfo
+}
+
+type ItemConnection {
+  edges: [ItemConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type ItemConnectionEdge {
+  cursor: String!
+  node: Item!
+}
+
+type ItemMetrics implements IObjectMetrics {
+  count(end: DateTime, start: DateTime, type: ItemType): Int!
+}
+
+type ItemMutations {
+  bulkPublish(ids: [ID!], language: String!): [PublishInfo!]
+  bulkUnpublish(ids: [ID!], language: String!): [PublishInfo!]
+  delete(id: ID!): Int!
+  publish(
+    id: ID!
+    includeDescendants: Boolean = false
+    language: String!
+  ): PublishInfo!
+  unpublish(
+    id: ID!
+    includeDescendants: Boolean = false
+    language: String!
+  ): PublishInfo
+  updateComponent(input: ComponentInput!, itemId: ID!, language: String!): Item!
+}
+
+type ItemQueries {
+  get(id: ID!, language: String!, versionLabel: VersionLabel! = current): Item
+  getMany(
+    externalReferences: [String!]
+    language: String!
+    tenantId: ID
+    versionLabel: VersionLabel! = current
+  ): [Item!]
+}
+
+type ItemRelationsComponentConfig {
+  acceptedShapeIdentifiers: [String!]
+  max: Int
+  min: Int
+}
+
+input ItemRelationsComponentConfigInput {
+  acceptedShapeIdentifiers: [String!]
+  max: Int
+  min: Int
+}
+
+type ItemRelationsContent {
+  items: [Item!]
+}
+
+input ItemRelationsContentInput {
+  itemIds: [ID!]
+}
+
+enum ItemSortField {
+  createdAt
+}
+
+type ItemSuggestSearchResult implements SuggestSearchResult {
+  id: ID!
+  name: String!
+  path: String!
+  shapeIdentifier: String!
+  tenantId: ID!
+  type: String!
+}
+
+enum ItemType {
+  document
+  folder
+  product
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type KeyValuePair {
+  key: String!
+  value: String
+}
+
+input KeyValuePairInput {
+  key: String!
+  value: String
+}
+
+type KlarnaPayment implements PaymentType {
+  id: String
+  merchantReference1: String
+  merchantReference2: String
+  metadata: String
+  orderId: String
+  provider: PaymentProvider!
+  recurringToken: String
+  status: String
+}
+
+input KlarnaPaymentInput {
+  klarna: String
+  merchantReference1: String
+  merchantReference2: String
+  metadata: String
+  orderId: String
+  recurringToken: String
+  status: String
+}
+
+type Language {
+  code: String!
+  name: String!
+  system: Boolean!
+}
+
+type LanguageMutations {
+  add(input: AddLanguageInput!, tenantId: ID!): [Language!]
+  remove(code: String!, tenantId: ID!): [Language!]
+  update(code: String!, input: UpdateLanguageInput!, tenantId: ID!): [Language!]
+}
+
+type LocationContent {
+  lat: Float
+  long: Float
+}
+
+input LocationContentInput {
+  lat: Float
+  long: Float
+}
+
+type Market {
+  createdAt: DateTime!
+  customerIdentifiers: [String!]
+  identifier: String!
+  name: String!
+  tenant: Tenant!
+  tenantId: ID!
+  updatedAt: DateTime
+}
+
+type MarketConnection {
+  edges: [MarketConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type MarketConnectionEdge {
+  cursor: String!
+  node: Market!
+}
+
+type MarketMutations {
+  create(input: CreateMarketInput!): Market!
+  delete(identifier: String!, tenantId: ID!): Int!
+  update(identifier: String!, input: UpdateMarketInput!, tenantId: ID!): Market!
+}
+
+type MarketQueries {
+  get(identifier: String!, tenantId: ID!): Market
+  getMany(
+    after: String
+    before: String
+    first: Int = 20
+    last: Int
+    tenantId: ID!
+  ): MarketConnection!
+}
+
+input MaxFileSizeInput {
+  size: Float!
+  unit: FileSizeUnit!
+}
+
+type MeMutations {
+  generateAccessToken(input: CreateAccessTokenInput!): AccessToken
+  setPreference(input: PreferenceInput!, tenantId: ID): Preference
+  setPreferences(input: PreferencesInput!, tenantId: ID): Preferences
+    @deprecated(reason: "replaced by setPreference")
+  update(input: UpdateUserInput): User
+}
+
+type Mutation {
+  accessToken: AccessTokenMutations
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  app: AppMutations
+  customer: CustomerMutations
+  document: DocumentMutations
+  fileUpload: FileUploadMutations
+  folder: FolderMutations
+  grid: GridMutations
+  image: ImageMutations
+  inviteToken: InviteTokenMutations
+  item: ItemMutations
+  language: LanguageMutations
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  market: MarketMutations!
+  me: MeMutations
+  order: OrderMutations
+  pipeline: PipelineMutations
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  priceList: PriceListMutations!
+  priceVariant: PriceVariantMutations!
+  product: ProductMutations
+  productSubscription: ProductSubscriptionMutations!
+    @deprecated(
+      reason: "productSubscription has been deprecated in favor of subscriptionContract"
+    )
+  shape: ShapeMutations
+  stockLocation: StockLocationMutations!
+  subscriptionContract: SubscriptionContractMutations!
+  subscriptionPlan: SubscriptionPlanMutations!
+  tenant: TenantMutations
+  topic: TopicMutations
+  tree: TreeMutations
+  user: UserMutations
+  vatType: VatTypeMutations
+  video: VideoMutations
+  webhook: WebhookMutations
+}
+
+type NerdyViewPreferences {
+  enabled: Boolean
+}
+
+input NerdyViewPreferencesInput {
+  enabled: Boolean
+}
+
+scalar NonNegativeFloat
+
+"""
+Integers that will have a value of 0 or more.
+"""
+scalar NonNegativeInt
+
+type NumericComponentConfig {
+  decimalPlaces: Int
+  units: [String!]
+}
+
+input NumericComponentConfigInput {
+  decimalPlaces: Int
+  units: [String!]
+}
+
+input NumericComponentContentInput {
+  number: Float!
+  unit: String
+}
+
+type NumericContent {
+  number: Float!
+  unit: String
+}
+
+enum Operation {
+  AVG
+  SUM
+}
+
+type Order {
+  additionalInformation: String
+  cart: [OrderItem!]!
+  createdAt: DateTime!
+  customer: Customer
+  id: ID!
+  meta: [KeyValuePair!]
+  payment: [Payment!]
+  pipelines: [OrderPipeline!]
+  tenant: Tenant!
+  tenantId: ID!
+  total: Price
+  updatedAt: DateTime
+}
+
+type OrderConnection {
+  edges: [OrderConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type OrderConnectionEdge {
+  cursor: String!
+  node: Order!
+}
+
+type OrderItem {
+  imageUrl: String
+  meta: [KeyValuePair!]
+  name: String!
+  orderId: ID!
+  price: Price
+  productId: ID
+  productSubscriptionId: ID
+    @deprecated(
+      reason: "Product Subscription IDs have been deprecated in favor of Subscription Contract IDs. Querying for them will be removed in a future release."
+    )
+  productVariantId: ID
+    @deprecated(
+      reason: "Product variant IDs have been deprecated and replaced by SKUs."
+    )
+  quantity: NonNegativeInt!
+  sku: String
+  subTotal: Price
+  subscription: OrderItemSubscription
+  subscriptionContractId: ID
+}
+
+input OrderItemInput {
+  imageUrl: String
+  meta: [KeyValuePairInput!]
+  name: String!
+  price: PriceInput
+  productId: ID
+  productSubscriptionId: ID
+  quantity: NonNegativeInt!
+  sku: String
+  subTotal: PriceInput
+  subscriptionContractId: ID
+}
+
+type OrderItemMeteredVariable {
+  id: ID!
+  price: Float!
+  usage: Float!
+}
+
+type OrderItemSubscription {
+  end: DateTime
+  meteredVariables: [OrderItemMeteredVariable!]
+  name: String
+  period: PositiveInt!
+  start: DateTime
+  unit: OrderItemSubscriptionPeriodUnit!
+}
+
+enum OrderItemSubscriptionPeriodUnit {
+  day
+  hour
+  minute
+  month
+  week
+  year
+}
+
+type OrderMetrics implements IObjectMetrics {
+  count(end: DateTime, start: DateTime): Int!
+}
+
+type OrderMutations {
+  delete(id: ID!): Int!
+  removePipeline(orderId: ID!, pipelineId: ID!): Order!
+  setPipelineStage(orderId: ID!, pipelineId: ID!, stageId: ID!): Order!
+  update(id: ID!, input: UpdateOrderInput!): Order!
+}
+
+type OrderPipeline {
+  pipeline: Pipeline!
+  pipelineId: ID!
+  stageId: ID!
+}
+
+type OrderQueries {
+  get(id: ID!): Order
+  getMany(
+    after: String
+    before: String
+    customerIdentifier: String
+    first: Int = 20
+    last: Int
+    pipelineId: ID
+    pipelineStageId: ID
+    sort: SortDirection = desc
+    sortField: OrderSortField = updatedAt
+    tenantId: ID
+  ): OrderConnection
+}
+
+enum OrderSortField {
+  createdAt
+  updatedAt
+}
+
+type OrdersReport {
+  avg(
+    direction: SortDirection = asc
+    end: DateTime
+    filterBySKUs: [String]
+    groupBy: Parameter = DATE
+    limit: Int
+    orderBy: Parameter = VALUE
+    resolution: Interval = DAILY
+    start: DateTime
+  ): [ReportMetric]!
+  sum(
+    direction: SortDirection = asc
+    end: DateTime
+    filterBySKUs: [String]
+    groupBy: Parameter = DATE
+    limit: Int
+    orderBy: Parameter = VALUE
+    resolution: Interval = DAILY
+    start: DateTime
+  ): [ReportMetric]!
+  total(end: DateTime, start: DateTime): Int!
+}
+
+type PageInfo {
+  endCursor: String!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String!
+  totalNodes: Int!
+}
+
+type ParagraphCollectionContent {
+  paragraphs: [ParagraphContent!]
+}
+
+input ParagraphCollectionContentInput {
+  paragraphs: [ParagraphContentInput!]!
+}
+
+type ParagraphContent {
+  body: RichTextContent
+  images: [Image!]
+  title: SingleLineContent
+  videos: [Video!]
+}
+
+input ParagraphContentInput {
+  body: RichTextContentInput
+  images: [ImageInput!]
+  title: SingleLineContentInput
+  videos: [VideoInput!]
+}
+
+enum Parameter {
+  CURRENCY
+  DATE
+  PRODUCT
+  VALUE
+}
+
+union Payment =
+    CashPayment
+  | CustomPayment
+  | KlarnaPayment
+  | PaypalPayment
+  | StripePayment
+
+input PaymentInput {
+  cash: CashPaymentInput
+  custom: CustomPaymentInput
+  klarna: KlarnaPaymentInput
+  paypal: PaypalPaymentInput
+  provider: PaymentProvider!
+  stripe: StripePaymentInput
+}
+
+enum PaymentProvider {
+  cash
+  custom
+  klarna
+  paypal
+  stripe
+}
+
+interface PaymentType {
+  provider: PaymentProvider!
+}
+
+type PaypalPayment implements PaymentType {
+  id: String
+  invoiceId: String
+  metadata: String
+  orderId: String
+  provider: PaymentProvider!
+  subscriptionId: String
+}
+
+input PaypalPaymentInput {
+  invoiceId: String
+  metadata: String
+  orderId: String
+  paypal: String
+  subscriptionId: String
+}
+
+scalar PhoneNumber
+
+type Pipeline {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  orders(
+    after: String
+    before: String
+    first: Int = 20
+    last: Int
+    sort: SortDirection = desc
+    sortField: OrderSortField = updatedAt
+  ): OrderConnection!
+  stages: [PipelineStage!]
+  tenantId: ID!
+  updatedAt: DateTime
+}
+
+type PipelineConnection {
+  edges: [PipelineConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type PipelineConnectionEdge {
+  cursor: String!
+  node: Pipeline!
+}
+
+type PipelineMutations {
+  addStage(
+    input: CreatePipelineStageInput!
+    pipelineId: ID!
+    position: Int
+  ): Pipeline!
+  create(input: CreatePipelineInput!): Pipeline!
+  delete(force: Boolean = false, id: ID!): Int
+  moveStage(newPosition: Int!, pipelineId: ID!, stageId: ID!): Pipeline!
+  removeStage(force: Boolean = false, pipelineId: ID!, stageId: ID!): Pipeline!
+  update(id: ID!, input: UpdatePipelineInput): Pipeline!
+  updateStage(
+    input: UpdatePipelineStageInput!
+    pipelineId: ID!
+    stageId: ID!
+  ): Pipeline!
+}
+
+type PipelineQueries {
+  get(id: ID!): Pipeline
+  getMany(
+    after: String
+    before: String
+    first: Int = 20
+    last: Int
+    sort: SortDirection = desc
+    sortField: PipelineSortField = createdAt
+    tenantId: ID!
+  ): PipelineConnection!
+}
+
+enum PipelineSortField {
+  createdAt
+}
+
+type PipelineStage {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  orders(
+    after: String
+    before: String
+    first: Int = 20
+    last: Int
+    sort: SortDirection = desc
+    sortField: OrderSortField = updatedAt
+  ): OrderConnection!
+  placeNewOrders: Boolean!
+}
+
+"""
+Integers that will have a value greater than 0.
+"""
+scalar PositiveInt
+
+type Preference {
+  enabled: Boolean!
+  name: String!
+}
+
+input PreferenceInput {
+  enabled: Boolean
+  experimental: Boolean
+  name: String!
+}
+
+type Preferences {
+  experimental: ExperimentalPreferences
+}
+
+input PreferencesInput {
+  experimental: ExperimentalPreferencesInput
+}
+
+type PresignedUploadRequest {
+  fields: [UploadField!]!
+  lifetime: Int!
+  maxSize: Int!
+  url: String
+}
+
+type Price {
+  currency: String!
+  discounts: [Discount!]
+  gross: Float
+  net: Float
+  tax: Tax
+}
+
+input PriceInput {
+  currency: String!
+  discounts: [DiscountInput!]
+  gross: Float
+  net: Float
+  tax: TaxInput
+}
+
+type PriceList {
+  createdAt: DateTime!
+  endDate: DateTime
+  identifier: String!
+  modifierType: PriceListModifierType!
+  name: String!
+  price(identifier: String! = "default"): Float
+  priceVariants: [PriceListPriceVariant!]
+  selectedProductVariants: PriceListSelectedProductVariants!
+  startDate: DateTime
+  targetAudience: PriceListTargetAudience!
+  tenant: Tenant!
+  tenantId: ID!
+  updatedAt: DateTime
+}
+
+type PriceListConnection {
+  edges: [PriceListConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type PriceListConnectionEdge {
+  cursor: String!
+  node: PriceList!
+}
+
+enum PriceListModifierType {
+  ABSOLUTE
+  PERCENTAGE
+  RELATIVE
+}
+
+type PriceListMutations {
+  create(input: CreatePriceListInput!): PriceList!
+  delete(identifier: String!, tenantId: ID!): Int!
+  removeSelectedProductVariants(
+    identifier: String!
+    tenantId: ID!
+    variants: [String!]!
+  ): PriceList!
+  update(
+    identifier: String!
+    input: UpdatePriceListInput!
+    tenantId: ID!
+  ): PriceList!
+  upsertSelectedProductVariants(
+    identifier: String!
+    tenantId: ID!
+    variants: [CreatePriceListProductVariant!]!
+  ): PriceList!
+}
+
+type PriceListPriceVariant {
+  decimalPlaces: Int
+  identifier: String!
+  modifier: Float!
+}
+
+input PriceListPriceVariantReferenceInput {
+  decimalPlaces: Int
+  identifier: String!
+  modifier: Float!
+}
+
+type PriceListProduct {
+  priceVariants: [PriceListPriceVariant!]
+  sku: String!
+}
+
+input PriceListProductPriceVariantReference {
+  identifier: String!
+  modifier: Float
+}
+
+enum PriceListProductSelectionType {
+  ALL_SKUS
+  SOME_SKUS
+}
+
+type PriceListQueries {
+  get(identifier: String!, tenantId: ID!): PriceList
+  getMany(
+    after: String
+    before: String
+    first: Int = 20
+    last: Int
+    tenantId: ID!
+  ): PriceListConnection
+  getProductVariants(
+    after: String
+    before: String
+    first: Int = 20
+    identifier: String!
+    language: String!
+    last: Int
+    tenantId: ID!
+    versionLabel: VersionLabel! = current
+  ): ProductVariantConnection
+}
+
+type PriceListSelectedProductVariants {
+  type: PriceListProductSelectionType
+}
+
+type PriceListTargetAudience {
+  marketIdentifiers: [String!]
+  type: PriceListTargetAudienceType!
+}
+
+enum PriceListTargetAudienceType {
+  EVERYONE
+  SOME
+}
+
+type PriceVariant {
+  createdAt: DateTime!
+  currency: String!
+  identifier: String!
+  name: String
+  tenant: Tenant!
+  tenantId: ID!
+  updatedAt: DateTime
+}
+
+type PriceVariantMutations {
+  create(input: CreatePriceVariantInput!): PriceVariant!
+  delete(identifier: String!, tenantId: ID!): Int!
+  update(
+    identifier: String!
+    input: UpdatePriceVariantInput!
+    tenantId: ID!
+  ): PriceVariant!
+}
+
+type PriceVariantQueries {
+  get(identifier: String!, tenantId: ID!): PriceVariant
+  getMany(tenantId: ID!): [PriceVariant!]
+}
+
+input PriceVariantReferenceInput {
+  identifier: String!
+  price: Float
+}
+
+type Product implements Item {
+  components: [Component!]
+  createdAt: DateTime
+  defaultVariant: ProductVariant!
+  externalReference: String
+  hasVersion(versionLabel: VersionLabel): Boolean
+  id: ID!
+  isSubscriptionOnly: Boolean @deprecated(reason: "option removed")
+  isVirtual: Boolean @deprecated(reason: "option removed")
+  language: String!
+  name: String
+  relatingItems: [Item!]
+  shape: Shape
+  tenantId: ID!
+  topics: [Topic!]
+  tree: TreeNode
+  type: ItemType!
+  updatedAt: DateTime
+  variant(sku: String!): ProductVariant
+  variants: [ProductVariant!]!
+  vatType: VatType
+  vatTypeId: ID
+  version: VersionedRecordInfo
+}
+
+type ProductMutations {
+  addVariant(
+    input: CreateProductVariantInput!
+    language: String!
+    productId: ID!
+  ): Product!
+  create(input: CreateProductInput!, language: String!): Product!
+  delete(id: ID!): Int!
+  publish(
+    id: ID!
+    includeDescendants: Boolean = false
+    language: String!
+  ): PublishInfo!
+  setDefaultVariant(
+    """
+    Language of the returned product record. The default variant will be set for all languages.
+    """
+    language: String!
+    productId: ID!
+    sku: String
+  ): Product!
+  unpublish(
+    id: ID!
+    includeDescendants: Boolean = false
+    language: String!
+  ): PublishInfo
+  update(id: ID!, input: UpdateProductInput!, language: String!): Product!
+  updateStock(
+    productId: ID!
+    sku: String!
+    stock: Int!
+    stockLocationIdentifier: String! = "default"
+  ): ProductStockLocation!
+  updateVariant(
+    input: UpdateSingleProductVariantInput!
+    language: String!
+    productId: ID!
+    sku: String
+  ): Product!
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  updateVariantComponent(
+    input: ComponentInput!
+    language: String!
+    productId: ID!
+    sku: String!
+  ): Product!
+}
+
+type ProductPriceVariant {
+  currency: String
+  identifier: String!
+  name: String
+  price: Float
+  priceList(identifier: String!): ProductVariantPriceList
+  priceLists: [ProductVariantPriceList!]
+}
+
+type ProductQueries {
+  get(
+    id: ID!
+    language: String!
+    versionLabel: VersionLabel! = current
+  ): Product
+  getVariants(
+    externalReferences: [String!]
+    language: String!
+    skus: [String!]
+    tenantId: ID!
+    versionLabel: VersionLabel! = current
+  ): [ProductVariant!]
+}
+
+type ProductStockLocation {
+  identifier: String!
+  meta: [KeyValuePair!]
+  name: String!
+  settings: StockLocationSettings
+  stock: Int
+}
+
+type ProductSubscription {
+  customer: Customer
+  customerIdentifier: String!
+  id: ID!
+  initial: ProductSubscriptionPhase
+  item: ProductSubscriptionItem!
+  payment: Payment
+  recurring: ProductSubscriptionPhase
+  status: ProductSubscriptionStatus!
+  subscriptionPlan: SubscriptionPlan
+  tenant: Tenant!
+  tenantId: ID!
+  usage(end: DateTime!, start: DateTime!): [ProductSubscriptionUsage!]
+}
+
+type ProductSubscriptionConnection {
+  edges: [ProductSubscriptionConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type ProductSubscriptionConnectionEdge {
+  cursor: String!
+  node: ProductSubscription!
+}
+
+interface ProductSubscriptionHistoryEvent {
+  type: ProductSubscriptionHistoryEventType!
+}
+
+type ProductSubscriptionHistoryEventCancellation implements ProductSubscriptionHistoryEvent {
+  activeUntil: DateTime
+  cancelledAt: DateTime!
+  deactivated: Boolean!
+  type: ProductSubscriptionHistoryEventType!
+}
+
+type ProductSubscriptionHistoryEventRenewal implements ProductSubscriptionHistoryEvent {
+  activeUntil: DateTime
+  currency: String!
+  price: Float!
+  renewedAt: DateTime!
+  type: ProductSubscriptionHistoryEventType!
+}
+
+type ProductSubscriptionHistoryEventRenewalDueBroadcast implements ProductSubscriptionHistoryEvent {
+  broadcastAt: DateTime!
+  renewAt: DateTime!
+  type: ProductSubscriptionHistoryEventType!
+}
+
+enum ProductSubscriptionHistoryEventType {
+  CANCELLATION
+  RENEWAL
+  RENEWAL_DUE_BROADCAST
+}
+
+type ProductSubscriptionItem {
+  imageUrl: String
+  meta: [KeyValuePair!]
+  name: String!
+  quantity: NonNegativeInt!
+  sku: String!
+}
+
+type ProductSubscriptionMutations {
+  cancel(deactivate: Boolean = false, id: ID!): ProductSubscription!
+  create(input: CreateProductSubscriptionInput!): ProductSubscription!
+  delete(id: ID!): Int
+  renew(id: ID!): ProductSubscription!
+  update(id: ID!, input: UpdateProductSubscriptionInput!): ProductSubscription!
+}
+
+type ProductSubscriptionPhase {
+  currency: String!
+  period: Int!
+  price: Float!
+  unit: SubscriptionPeriodUnit!
+}
+
+input ProductSubscriptionPlanReferenceInput {
+  identifier: String!
+  periodId: ID!
+}
+
+type ProductSubscriptionQueries {
+  get(id: ID!): ProductSubscription
+  getMany(
+    after: String
+    before: String
+    customerIdentifier: String
+    first: Int = 20
+    last: Int
+    sort: SortDirection = desc
+    sortField: ProductSubscriptionSortField = updatedAt
+    tenantId: ID!
+  ): ProductSubscriptionConnection
+}
+
+enum ProductSubscriptionSortField {
+  updatedAt
+}
+
+type ProductSubscriptionStatus {
+  activeUntil: DateTime
+  currency: String!
+  price: Float!
+  renewAt: DateTime
+}
+
+type ProductSubscriptionUsage {
+  meteredVariableId: ID!
+  quantity: Float
+}
+
+type ProductVariant {
+  attributes: [ProductVariantAttribute!]
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  components: [Component!]
+  externalReference: String
+  id: ID!
+    @deprecated(
+      reason: "Product variant IDs have been deprecated and replaced by SKUs."
+    )
+  images: [Image!]
+  isDefault: Boolean!
+  isInactive: Boolean!
+  isAvailableForWeb: Boolean!
+  name: String
+  price(identifier: String! = "default"): Float
+  priceVariants: [ProductPriceVariant!]
+  product: Product!
+  productId: ID!
+  sku: String!
+  stock(identifier: String! = "default"): Int
+  stockLocations: [ProductStockLocation!]
+  subscriptionPlans: [ProductVariantSubscriptionPlan!]
+  videos: [Video!]
+}
+
+type ProductVariantAttribute {
+  attribute: String!
+  value: String!
+}
+
+input ProductVariantAttributeInput {
+  attribute: String!
+  value: String!
+}
+
+type ProductVariantConnection {
+  edges: [ProductVariantConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type ProductVariantConnectionEdge {
+  cursor: String!
+  node: ProductVariant!
+}
+
+type ProductVariantPriceList {
+  endDate: DateTime
+  identifier: String!
+  modifier: Float!
+  modifierType: PriceListModifierType!
+  price: Float!
+  startDate: DateTime
+}
+
+type ProductVariantSubscriptionMeteredVariable {
+  id: ID!
+  identifier: String!
+  name: String!
+  tierType: TierType!
+  tiers: [ProductVariantSubscriptionPlanTier!]!
+}
+
+type ProductVariantSubscriptionPlan {
+  identifier: String!
+  name: String
+  periods: [ProductVariantSubscriptionPlanPeriod!]!
+  tenantId: ID!
+}
+
+type ProductVariantSubscriptionPlanPeriod {
+  id: ID!
+  initial: ProductVariantSubscriptionPlanPricing
+  name: String!
+  recurring: ProductVariantSubscriptionPlanPricing
+}
+
+type ProductVariantSubscriptionPlanPricing {
+  meteredVariables: [ProductVariantSubscriptionMeteredVariable!]
+  period: Int!
+  price(identifier: String = "default"): Float
+  priceVariants: [ProductPriceVariant!]
+  unit: SubscriptionPeriodUnit!
+}
+
+type ProductVariantSubscriptionPlanTier {
+  price(identifier: String = "default"): Float
+  priceVariants: [ProductPriceVariant!]
+  threshold: Int!
+}
+
+type PropertiesTableComponentConfig {
+  sections: [PropertiesTableComponentConfigSection!]!
+}
+
+input PropertiesTableComponentConfigInput {
+  sections: [PropertiesTableComponentConfigSectionInput!]!
+}
+
+type PropertiesTableComponentConfigSection {
+  keys: [String!]!
+  title: String
+}
+
+input PropertiesTableComponentConfigSectionInput {
+  keys: [String!]!
+  title: String
+}
+
+type PropertiesTableComponentSection {
+  properties: [KeyValuePair!]
+  title: String
+}
+
+input PropertiesTableComponentSectionInput {
+  properties: [KeyValuePairInput!]
+  title: String
+}
+
+type PropertiesTableContent {
+  sections: [PropertiesTableComponentSection!]
+}
+
+input PropertiesTableContentInput {
+  sections: [PropertiesTableComponentSectionInput!]
+}
+
+type PublishInfo {
+  id: ID!
+  language: String
+  versionId: ID
+}
+
+type Query {
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  app: AppQueries!
+  currencySummary: CurrencySummaryReport
+  customer: CustomerQueries!
+  document: DocumentQueries!
+  file: FileQueries!
+  folder: FolderQueries!
+  grid: GridQueries!
+  image: ImageQueries!
+  item: ItemQueries!
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  market: MarketQueries!
+  me: User
+  order: OrderQueries!
+  pipeline: PipelineQueries!
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  priceList: PriceListQueries!
+  priceVariant: PriceVariantQueries!
+  product: ProductQueries!
+  productSubscription: ProductSubscriptionQueries!
+    @deprecated(
+      reason: "productSubscription has been deprecated in favor of subscriptionContract"
+    )
+  report: TenantReports
+  search: SearchQueries
+  shape: ShapeQueries!
+  stockLocation: StockLocationQueries!
+  subscriptionContract: SubscriptionContractQueries!
+  subscriptionContractEvent: SubscriptionContractEventQueries
+  subscriptionPlan: SubscriptionPlanQueries!
+  tenant: TenantQueries!
+  topic: TopicQueries!
+  tree: TreeQueries!
+  user: UserQueries!
+  version: VersionedServices
+  webhook: WebhookQueries!
+}
+
+input RegenerateSecretsInput {
+  signatureSecret: Boolean
+  staticAuthToken: Boolean
+}
+
+type ReportMetric {
+  currency: String
+  date: DateTime
+  name: String
+  product(language: String!): Product
+  sku: String
+  value: Float!
+}
+
+type RichTextContent {
+  html: [String!]
+  json: [JSON]
+  plainText: [String!]
+}
+
+input RichTextContentInput {
+  html: [String!]
+  json: [JSON!]
+}
+
+type SalesReport implements IObjectReports {
+  avg(
+    direction: SortDirection = asc
+    end: DateTime
+    filterBySKUs: [String]
+    groupBy: Parameter = DATE
+    limit: Int
+    orderBy: Parameter = VALUE
+    resolution: Interval = DAILY
+    start: DateTime
+  ): [ReportMetric]!
+  sum(
+    direction: SortDirection = asc
+    end: DateTime
+    filterBySKUs: [String]
+    groupBy: Parameter = DATE
+    limit: Int
+    orderBy: Parameter = VALUE
+    resolution: Interval = DAILY
+    start: DateTime
+  ): [ReportMetric]!
+  total(end: DateTime, start: DateTime): Float!
+}
+
+type SearchQueries {
+  suggest(
+    after: String
+    first: Int
+    language: String!
+    searchTerm: String
+    tenantId: ID!
+    types: [SuggestSearchItemType!]
+  ): SuggestSearchConnection
+  topics(
+    language: String!
+    searchTerm: String
+    tenantId: ID!
+  ): TopicSearchConnection
+}
+
+type SelectionComponentConfig {
+  max: Int
+  min: Int
+  options: [SelectionComponentOptionConfig!]!
+}
+
+input SelectionComponentConfigInput {
+  max: Int
+  min: Int
+  options: [SelectionComponentOptionConfigInput!]!
+}
+
+input SelectionComponentContentInput {
+  keys: [String!]!
+}
+
+type SelectionComponentOptionConfig {
+  isPreselected: Boolean
+  key: String!
+  value: String!
+}
+
+input SelectionComponentOptionConfigInput {
+  isPreselected: Boolean
+  key: String!
+  value: String!
+}
+
+type SelectionContent {
+  options: [KeyValuePair!]!
+}
+
+type Shape {
+  components: [ShapeComponent!]
+  createdAt: DateTime!
+  id: ID
+    @deprecated(
+      reason: "Shape IDs have been deprecated in favor of human readable identifiers. Querying for them will be removed in a future release."
+    )
+  identifier: String!
+  itemCount: Int!
+  items(language: String!): [Item!]
+  meta: [KeyValuePair!]
+  metaProperty(key: String!): String
+  name: String!
+  tenantId: ID!
+  type: ShapeType!
+  updatedAt: DateTime
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  variantComponents: [ShapeComponent!]
+}
+
+type ShapeComponent {
+  config: ComponentConfig
+  description: String
+  id: String!
+  name: String!
+  type: ComponentType!
+}
+
+input ShapeComponentInput {
+  config: ComponentConfigInput
+  description: String
+  id: String
+  name: String!
+  type: ComponentType!
+}
+
+type ShapeMetrics implements IObjectMetrics {
+  count(end: DateTime, start: DateTime): Int!
+}
+
+type ShapeMutations {
+  create(input: CreateShapeInput!): Shape!
+  delete(identifier: String, tenantId: ID): Int!
+  migrateLegacyId(id: String!, identifier: String!, tenantId: ID!): Shape!
+    @deprecated(
+      reason: "Migrating legacy shape ids will be removed in a future release."
+    )
+  update(identifier: String, input: UpdateShapeInput!, tenantId: ID): Shape!
+}
+
+type ShapeQueries {
+  get(identifier: String, tenantId: ID): Shape
+  getMany(tenantId: ID!): [Shape!]
+}
+
+enum ShapeType {
+  document
+  folder
+  product
+}
+
+type SingleLineContent {
+  text: String
+}
+
+input SingleLineContentInput {
+  text: String
+}
+
+enum SortDirection {
+  asc
+  desc
+}
+
+type StockLocation {
+  identifier: String!
+  name: String!
+  settings: StockLocationSettings!
+  tenant: Tenant!
+  tenantId: ID!
+}
+
+type StockLocationMutations {
+  create(input: CreateStockLocationInput!): StockLocation!
+  delete(identifier: String!, tenantId: ID!): Int!
+  update(
+    identifier: String!
+    input: UpdateStockLocationInput!
+    tenantId: ID!
+  ): StockLocation!
+}
+
+type StockLocationQueries {
+  get(identifier: String!, tenantId: ID!): StockLocation
+  getMany(tenantId: ID!): [StockLocation!]
+}
+
+input StockLocationReferenceInput {
+  identifier: String!
+  meta: [KeyValuePairInput!]
+  stock: Int
+}
+
+type StockLocationSettings {
+  minimum: Int
+  unlimited: Boolean!
+}
+
+input StockLocationSettingsInput {
+  minimum: Int
+}
+
+type StripePayment implements PaymentType {
+  customerId: String
+  id: String
+  metadata: String
+  orderId: String
+  paymentIntentId: String
+  paymentMethod: String
+  paymentMethodId: String
+  provider: PaymentProvider!
+  subscriptionId: String
+}
+
+input StripePaymentInput {
+  customerId: String
+  metadata: String
+  orderId: String
+  paymentIntentId: String
+  paymentMethod: String
+  paymentMethodId: String
+  stripe: String
+  subscriptionId: String
+}
+
+type SubscriptionContract {
+  addresses: [SubscriptionContractAddress!]
+  createdAt: DateTime!
+  customer: Customer
+  customerIdentifier: String!
+  id: ID!
+  initial: SubscriptionContractPhase
+  item: SubscriptionContractItem!
+  payment: Payment
+  recurring: SubscriptionContractPhase
+  status: SubscriptionContractStatus!
+  subscriptionPlan: SubscriptionPlan
+  tenant: Tenant!
+  tenantId: ID!
+  updatedAt: DateTime
+  usage(end: DateTime!, start: DateTime!): [SubscriptionContractUsage!]
+}
+
+type SubscriptionContractAddress {
+  city: String
+  country: String
+  email: EmailAddress
+  firstName: String
+  id: String
+  lastName: String
+  middleName: String
+  phone: String
+  postalCode: String
+  state: String
+  street: String
+  street2: String
+  streetNumber: String
+  type: AddressType!
+}
+
+type SubscriptionContractCancelledEvent implements SubscriptionContractEvent {
+  createdAt: DateTime!
+  id: ID!
+  type: SubscriptionContractEventType!
+}
+
+type SubscriptionContractConnection {
+  edges: [SubscriptionContractConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type SubscriptionContractConnectionEdge {
+  cursor: String!
+  node: SubscriptionContract!
+}
+
+interface SubscriptionContractEvent {
+  createdAt: DateTime!
+  id: ID!
+  type: SubscriptionContractEventType!
+}
+
+type SubscriptionContractEventConnection {
+  edges: [SubscriptionContractEventConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type SubscriptionContractEventConnectionEdge {
+  cursor: String!
+  node: SubscriptionContractEvent!
+}
+
+type SubscriptionContractEventQueries {
+  getMany(
+    after: String
+    before: String
+    eventTypes: [SubscriptionContractEventType!]
+    first: Int = 20
+    last: Int
+    sort: SortDirection = desc
+    subscriptionContractId: ID!
+    tenantId: ID!
+  ): SubscriptionContractEventConnection
+}
+
+enum SubscriptionContractEventSortField {
+  _id
+}
+
+enum SubscriptionContractEventType {
+  cancelled
+  renewalDueBroadcast
+  renewed
+  usageTracked
+}
+
+type SubscriptionContractItem {
+  imageUrl: String
+  meta: [KeyValuePair!]
+  name: String!
+  sku: String!
+}
+
+type SubscriptionContractMeteredVariableReference {
+  id: ID!
+  tierType: TierType
+  tiers: [SubscriptionContractMeteredVariableTierReference!]!
+}
+
+type SubscriptionContractMeteredVariableTierReference {
+  currency: String!
+  price: Float
+  threshold: Int!
+}
+
+type SubscriptionContractMutations {
+  cancel(deactivate: Boolean = false, id: ID!): SubscriptionContract!
+  create(input: CreateSubscriptionContractInput!): SubscriptionContract!
+  delete(id: ID!): Int
+  renew(id: ID!): SubscriptionContract!
+  trackUsage(
+    id: ID!
+    input: TrackUsageInput!
+  ): SubscriptionContractUsageTrackedEvent!
+  update(
+    id: ID!
+    input: UpdateSubscriptionContractInput!
+  ): SubscriptionContract!
+}
+
+type SubscriptionContractPhase {
+  currency: String!
+  meteredVariables: [SubscriptionContractMeteredVariableReference!]
+  period: Int!
+  price: Float!
+  unit: SubscriptionPeriodUnit!
+}
+
+type SubscriptionContractQueries {
+  get(id: ID!): SubscriptionContract
+  getMany(
+    after: String
+    before: String
+    customerIdentifier: String
+    first: Int = 20
+    last: Int
+    sort: SortDirection = desc
+    sortField: SubscriptionContractSortField = updatedAt
+    tenantId: ID!
+  ): SubscriptionContractConnection
+}
+
+type SubscriptionContractRenewalDueBroadcastEvent implements SubscriptionContractEvent {
+  createdAt: DateTime!
+  data: SubscriptionContractRenewalDueBroadcastEventData!
+  id: ID!
+  type: SubscriptionContractEventType!
+}
+
+type SubscriptionContractRenewalDueBroadcastEventData {
+  broadcastAt: DateTime!
+  renewAt: DateTime!
+}
+
+type SubscriptionContractRenewedEvent implements SubscriptionContractEvent {
+  createdAt: DateTime!
+  id: ID!
+  type: SubscriptionContractEventType!
+}
+
+enum SubscriptionContractSortField {
+  updatedAt
+}
+
+type SubscriptionContractStatus {
+  activeUntil: DateTime
+  currency: String!
+  price: Float!
+  renewAt: DateTime
+}
+
+type SubscriptionContractUsage {
+  meteredVariableId: ID!
+  quantity: Float
+}
+
+type SubscriptionContractUsageTrackedEvent implements SubscriptionContractEvent {
+  createdAt: DateTime!
+  id: ID!
+  type: SubscriptionContractEventType!
+}
+
+enum SubscriptionPeriodUnit {
+  day
+  month
+  week
+  year
+}
+
+type SubscriptionPlan {
+  createdAt: DateTime!
+  identifier: String!
+  meteredVariables: [SubscriptionPlanMeteredVariable!]
+  name: String
+  periods: [SubscriptionPlanPeriod!]
+  tenant: Tenant!
+  tenantId: ID!
+  updatedAt: DateTime
+}
+
+type SubscriptionPlanMeteredVariable {
+  id: ID!
+  identifier: String!
+  name: String
+  unit: String!
+}
+
+input SubscriptionPlanMeteredVariableInput {
+  id: ID
+  identifier: String!
+  name: String
+  unit: String!
+}
+
+input SubscriptionPlanMeteredVariableReferenceInput {
+  id: ID!
+  tierType: TierType = graduated
+  tiers: [SubscriptionPlanMeteredVariableTierReferenceInput!]
+}
+
+input SubscriptionPlanMeteredVariableTierReferenceInput {
+  price: Float
+  priceVariants: [PriceVariantReferenceInput!]
+  threshold: Int!
+}
+
+type SubscriptionPlanMutations {
+  create(input: CreateSubscriptionPlanInput!): SubscriptionPlan!
+  delete(identifier: String!, tenantId: ID!): Int!
+  update(
+    identifier: String!
+    input: UpdateSubscriptionPlanInput!
+    tenantId: ID!
+  ): SubscriptionPlan!
+}
+
+type SubscriptionPlanPeriod {
+  id: ID!
+  initial: SubscriptionPlanPhase
+  name: String!
+  recurring: SubscriptionPlanPhase!
+}
+
+input SubscriptionPlanPeriodInput {
+  id: ID
+  initial: SubscriptionPlanPhaseInput
+  name: String!
+  recurring: SubscriptionPlanPhaseInput!
+}
+
+input SubscriptionPlanPeriodReferenceInput {
+  id: ID!
+  initial: SubscriptionPlanPriceInput
+  recurring: SubscriptionPlanPriceInput!
+}
+
+type SubscriptionPlanPhase {
+  period: Int!
+  unit: SubscriptionPeriodUnit!
+}
+
+input SubscriptionPlanPhaseInput {
+  period: Int!
+  unit: SubscriptionPeriodUnit!
+}
+
+input SubscriptionPlanPriceInput {
+  meteredVariables: [SubscriptionPlanMeteredVariableReferenceInput!]
+  price: Float
+  priceVariants: [PriceVariantReferenceInput!]
+}
+
+type SubscriptionPlanQueries {
+  get(identifier: String!, tenantId: ID!): SubscriptionPlan
+  getMany(tenantId: ID!): [SubscriptionPlan!]
+}
+
+input SubscriptionPlanReferenceInput {
+  identifier: String!
+  meteredVariables: [SubscriptionPlanMeteredVariableReferenceInput!]
+  periods: [SubscriptionPlanPeriodReferenceInput!]!
+}
+
+type SuggestSearchAggregations {
+  totalResults: Int!
+  typesAggregation: [SuggestSearchTypesAggregation!]!
+}
+
+type SuggestSearchConnection {
+  aggregations: SuggestSearchAggregations!
+  edges: [SuggestSearchConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type SuggestSearchConnectionEdge {
+  cursor: String!
+  node: SuggestSearchResult!
+}
+
+enum SuggestSearchItemType {
+  DOCUMENT
+  FOLDER
+  GRID
+  PIPELINE
+  PRODUCT
+  SHAPE
+  TOPIC
+  WEBHOOK
+}
+
+interface SuggestSearchResult {
+  id: ID!
+  name: String!
+  path: String!
+  tenantId: ID!
+  type: String!
+}
+
+type SuggestSearchTypesAggregation {
+  count: Int!
+  type: String!
+}
+
+type Tax {
+  name: String
+  percent: Float
+}
+
+input TaxInput {
+  name: String
+  percent: Float
+}
+
+type Tenant {
+  authenticationMethod: TenantAuthenticationMethod
+  availableLanguages: [Language!]
+  createdAt: DateTime!
+  defaults: TenantDefaults!
+  grids(language: String!, versionLabel: VersionLabel! = current): [Grid!]
+  id: ID!
+  identifier: String!
+  isActive: Boolean!
+  isTrial: Boolean!
+  logo: Image
+  meta: [KeyValuePair!]
+  metaProperty(key: String!): String
+  metrics: TenantMetrics
+  name: String!
+  preferences: TenantPreferences
+  rootItemId: ID!
+  shapes: [Shape!]
+
+  """
+  Empty string for non-admin users.
+  """
+  signatureSecret: String!
+
+  """
+  Empty string for non-admin users.
+  """
+  staticAuthToken: String
+  topics(language: String!): [Topic!]
+  tree(versionLabel: VersionLabel): [TreeNode!]
+  updatedAt: DateTime
+  users: [UserTenantRole!]
+  vatTypes: [VatType!]
+  webhooks(concern: String, event: String): [Webhook!]
+}
+
+type TenantAuthenticationMethod {
+  catalogue: AuthenticationMethod
+  search: AuthenticationMethod
+}
+
+input TenantAuthenticationMethodInput {
+  catalogue: AuthenticationMethod
+  search: AuthenticationMethod
+}
+
+type TenantDefaults {
+  currency: String!
+  language: String!
+}
+
+input TenantDefaultsInput {
+  currency: String
+  language: String
+}
+
+type TenantFrontend {
+  authentication: TenantFrontendAuthentication
+    @deprecated(reason: "authentication property has been deprecated")
+  name: String!
+  responsive: Boolean
+    @deprecated(reason: "responsive property has been deprecated")
+  url: String!
+}
+
+type TenantFrontendAuthentication {
+  key: String!
+  value: String!
+}
+
+input TenantFrontendAuthenticationInput {
+  key: String!
+  value: String!
+}
+
+input TenantFrontendInput {
+  name: String!
+  url: String!
+}
+
+type TenantMetrics {
+  apiCalls: ApiCallMetrics!
+  bandwidth: BandwidthUsageMetrics!
+  items: ItemMetrics!
+  orders: OrderMetrics!
+  shapes: ShapeMetrics!
+  users: UserMetrics!
+  webhooks: WebhookMetrics!
+}
+
+type TenantMutations {
+  addUsers(roles: [UserRoleInput!]!, tenantId: ID!): [UserTenantRole!]!
+  create(input: CreateTenantInput!): Tenant!
+  delete(id: ID!): Int!
+  regenerateSecrets(input: RegenerateSecretsInput, tenantId: ID!): Tenant!
+  regenerateStaticAuthToken(tenantId: ID!): Tenant!
+    @deprecated(reason: "Replaced by regenerateSecrets")
+  removeUsers(tenantId: ID!, userIds: [ID!]!): [UserTenantRole!]
+  setAuthenticationMethod(
+    input: TenantAuthenticationMethodInput
+    tenantId: ID!
+  ): Tenant!
+  setPreferences(
+    input: TenantPreferencesInput!
+    tenantId: ID!
+  ): TenantPreferences!
+  update(id: ID!, input: UpdateTenantInput!): Tenant!
+}
+
+type TenantPreferences {
+  frontends: [TenantFrontend]
+}
+
+input TenantPreferencesInput {
+  frontends: [TenantFrontendInput!]
+}
+
+type TenantQueries {
+  get(id: ID, identifier: String): Tenant
+  getMany(identifier: String): [Tenant!]
+  getRootTopics(language: String!, tenantId: ID!): [Topic]
+  suggestIdentifier(desired: String!): IdentifierSuggestion!
+}
+
+type TenantReports {
+  orders(
+    currency: String!
+    end: DateTime
+    start: DateTime
+    tenantId: ID!
+  ): OrdersReport!
+  sales(
+    currency: String!
+    end: DateTime
+    start: DateTime
+    tenantId: ID!
+  ): SalesReport!
+}
+
+input TenantRoleInput {
+  role: UserRole!
+  tenantId: ID!
+}
+
+enum TierType {
+  graduated
+  volume
+}
+
+type Topic {
+  ancestors: [Topic!]
+  childCount: Int!
+  children: [Topic!]
+  createdAt: DateTime!
+  descendants: [Topic!]
+  id: ID!
+  items: [Item!]
+  language: String
+  name: String
+  parent: Topic
+  parentId: ID
+  path: String!
+  tenant: Tenant!
+  tenantId: ID!
+  updatedAt: DateTime
+}
+
+type TopicConnection {
+  edges: [TopicConnectionEdge!]
+  pageInfo: PageInfo!
+}
+
+type TopicConnectionEdge {
+  cursor: String!
+  node: Topic!
+}
+
+type TopicImagesModified {
+  modified: Int
+}
+
+type TopicItemsModified {
+  modified: Int
+}
+
+type TopicMutations {
+  addImages(imageKeys: [String!]!, topicId: ID!): TopicImagesModified!
+  addItems(itemIds: [ID!]!, topicId: ID!): TopicItemsModified!
+  bulkCreate(
+    input: [BulkCreateTopicInput!]!
+    language: String!
+    tenantId: ID!
+  ): [Topic!]!
+  create(input: CreateTopicInput!, language: String!): Topic!
+  delete(id: ID!): Int!
+  removeImages(imageKeys: [String!]!, topicId: ID!): TopicImagesModified!
+  removeItems(itemIds: [ID!]!, topicId: ID!): TopicItemsModified!
+  update(id: ID!, input: UpdateTopicInput!, language: String!): Topic!
+}
+
+type TopicQueries {
+  """
+  Returns a specific topic. Topics can be queried either by ID or by path.
+  """
+  get(id: ID, language: String!, path: GetTopicByPathArguments): Topic
+  getRootTopics(language: String!, tenantId: ID!): [Topic]
+}
+
+type TopicSearchAggregations {
+  totalResults: Int!
+}
+
+type TopicSearchConnection {
+  aggregations: TopicSearchAggregations!
+  edges: [TopicSearchConnectionEdge!]
+}
+
+type TopicSearchConnectionEdge {
+  node: TopicSearchResult!
+}
+
+type TopicSearchResult {
+  display: String!
+  id: ID!
+  language: String!
+  name: String!
+  path: String!
+  tenantId: ID!
+}
+
+input TrackUsageInput {
+  idempotencyKey: String
+  meteredVariableId: ID!
+  quantity: Float!
+}
+
+type TreeMutations {
+  createNode(input: FullTreeNodeInput!): TreeNode!
+  deleteNode(itemId: ID!): Int!
+  moveNode(input: TreeNodeInput!, itemId: ID!): TreeNode!
+}
+
+type TreeNode {
+  ancestors: [TreeNode!]
+  childCount: Int
+  children: [TreeNode!]
+  identifiers: [TreeNodeIdentifier!]
+  item(language: String): Item
+  itemId: ID!
+  language: String
+  parent: TreeNode
+  parentId: ID
+  path(language: String): String
+  position: PositiveInt
+  siblings: [TreeNode!]
+  versionLabel: VersionLabel!
+}
+
+type TreeNodeIdentifier {
+  identifier: String!
+  language: String!
+}
+
+input TreeNodeIdentifierInput {
+  identifier: String!
+  language: String!
+}
+
+input TreeNodeInput {
+  parentId: ID!
+  position: PositiveInt
+}
+
+type TreeQueries {
+  getNode(
+    itemId: ID!
+    language: String
+    versionLabel: VersionLabel! = current
+  ): TreeNode
+}
+
+input UpdateAppInput {
+  baseUrl: String
+  name: String
+}
+
+input UpdateCustomerAddressInput {
+  city: String
+  country: String
+  email: EmailAddress
+  firstName: String
+  lastName: String
+  middleName: String
+  phone: String
+  postalCode: String
+  state: String
+  street: String
+  street2: String
+  streetNumber: String
+  type: AddressType
+}
+
+input UpdateCustomerInput {
+  addresses: [CreateCustomerAddressInput!]
+  birthDate: Date
+  companyName: String
+  email: String
+  externalReferences: [KeyValuePairInput!]
+  firstName: String
+  lastName: String
+  meta: [KeyValuePairInput!]
+  middleName: String
+  phone: String
+  taxNumber: String
+}
+
+input UpdateDocumentInput {
+  components: [ComponentInput!]
+  createdAt: DateTime
+  externalReference: String
+  name: String
+  topicIds: [ID!]
+}
+
+input UpdateFolderInput {
+  components: [ComponentInput!]
+  createdAt: DateTime
+  externalReference: String
+  name: String
+  topicIds: [ID!]
+}
+
+input UpdateGridInput {
+  meta: [KeyValuePairInput!]
+  name: String
+  rows: [GridRowInput!]
+}
+
+input UpdateImageInput {
+  altText: String
+  caption: RichTextContentInput
+}
+
+input UpdateLanguageInput {
+  name: String!
+}
+
+input UpdateMarketInput {
+  customerIdentifiers: [String!]
+  name: String
+}
+
+input UpdateOrderInput {
+  additionalInformation: String
+  cart: [OrderItemInput!]
+  customer: CustomerInput
+  meta: [KeyValuePairInput!]
+  payment: [PaymentInput!]
+  total: PriceInput
+}
+
+input UpdatePipelineInput {
+  name: String!
+}
+
+input UpdatePipelineStageInput {
+  name: String
+  placeNewOrders: Boolean
+}
+
+input UpdatePriceListInput {
+  endDate: DateTime
+  modifierType: PriceListModifierType
+  name: String
+  priceVariants: [PriceListPriceVariantReferenceInput!]
+  selectedProductVariants: CreatePriceListSelectedProductVariantsInput
+  startDate: DateTime
+  targetAudience: CreatePriceListTargetAudienceInput
+}
+
+input UpdatePriceVariantInput {
+  currency: String
+  name: String
+}
+
+input UpdateProductInput {
+  components: [ComponentInput!]
+  createdAt: DateTime
+  externalReference: String
+  name: String
+  topicIds: [ID!]
+  variants: [UpdateProductVariantInput!]
+  vatTypeId: ID
+}
+
+input UpdateProductSubscriptionInput {
+  addresses: [CreateProductSubscriptionAddressInput!]
+  initial: UpdateProductSubscriptionPhaseInput
+  item: UpdateProductSubscriptionItemInput
+  payment: PaymentInput
+  recurring: UpdateProductSubscriptionPhaseInput
+  status: UpdateProductSubscriptionStatusInput
+}
+
+input UpdateProductSubscriptionItemInput {
+  imageUrl: String
+  meta: [KeyValuePairInput!]
+  name: String
+  quantity: NonNegativeInt
+  sku: String
+}
+
+input UpdateProductSubscriptionPhaseInput {
+  currency: String
+  price: Float
+}
+
+input UpdateProductSubscriptionStatusInput {
+  activeUntil: DateTime
+  currency: String
+  price: Float
+  renewAt: DateTime
+}
+
+input UpdateProductVariantInput {
+  attributes: [ProductVariantAttributeInput!]
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  components: [ComponentInput!]
+  externalReference: String
+  id: String
+  images: [ImageInput!]
+  isDefault: Boolean
+  name: String
+  price: Float
+  priceVariants: [PriceVariantReferenceInput!]
+  sku: String
+  stock: Int
+  stockLocations: [StockLocationReferenceInput!]
+  subscriptionPlans: [SubscriptionPlanReferenceInput!]
+  videos: [VideoInput!]
+}
+
+input UpdateShapeInput {
+  components: [ShapeComponentInput!]
+  meta: [KeyValuePairInput!]
+  name: String
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  variantComponents: [ShapeComponentInput!]
+}
+
+input UpdateSingleProductVariantInput {
+  attributes: [ProductVariantAttributeInput!]
+
+  """
+  **EXPERIMENTAL:** Watch out! This feature is still in testing process.
+  """
+  components: [ComponentInput!]
+  externalReference: String
+  images: [ImageInput!]
+  name: String
+  price: Float
+  priceVariants: [PriceVariantReferenceInput!]
+  sku: String
+  stock: Int
+  stockLocations: [StockLocationReferenceInput!]
+  subscriptionPlans: [SubscriptionPlanReferenceInput!]
+  videos: [VideoInput!]
+}
+
+input UpdateStockLocationInput {
+  name: String
+  settings: StockLocationSettingsInput
+}
+
+input UpdateSubscriptionContractInput {
+  addresses: [CreateSubscriptionContractAddressInput!]
+  initial: UpdateSubscriptionContractPhaseInput
+  item: UpdateSubscriptionContractItemInput
+  payment: PaymentInput
+  recurring: UpdateSubscriptionContractPhaseInput
+  status: UpdateSubscriptionContractStatusInput
+}
+
+input UpdateSubscriptionContractItemInput {
+  imageUrl: String
+  meta: [KeyValuePairInput!]
+  name: String
+  quantity: NonNegativeInt
+  sku: String
+}
+
+input UpdateSubscriptionContractPhaseInput {
+  currency: String
+  meteredVariables: [CreateSubscriptionContractMeteredVariableReferenceInput!]
+  price: Float
+}
+
+input UpdateSubscriptionContractStatusInput {
+  activeUntil: DateTime
+  currency: String
+  price: Float
+  renewAt: DateTime
+}
+
+input UpdateSubscriptionPlanInput {
+  meteredVariables: [SubscriptionPlanMeteredVariableInput!]
+  name: String
+  periods: [SubscriptionPlanPeriodInput!]
+}
+
+input UpdateTenantInput {
+  defaults: TenantDefaultsInput
+  isActive: Boolean
+  isTrial: Boolean
+  logo: ImageInput
+  name: String
+}
+
+input UpdateTopicInput {
+  name: String
+  parentId: ID
+  pathIdentifier: String
+}
+
+input UpdateUserInput {
+  companyName: String
+  email: String
+  firstName: String
+  lastName: String
+  marketingEmailConsentedAt: DateTime
+  tocReadAt: DateTime
+}
+
+input UpdateVatTypeInput {
+  name: String
+  percent: Float
+}
+
+input UpdateWebhookInput {
+  concern: String
+  event: String
+  graphqlQuery: String
+  headers: [WebhookHeaderInput!]
+  method: HttpMethod
+  name: String
+  url: String
+}
+
+type UploadField {
+  name: String!
+  value: String!
+}
+
+type User {
+  accessTokens: [AccessToken!]
+  companyName: String
+  createdAt: DateTime
+  email: String
+  firstName: String
+  id: ID!
+  isAdmin: Boolean!
+  lastName: String
+  lastSeenAt: DateTime
+  marketingEmailConsentedAt: DateTime
+  preferences(tenantId: ID): Preferences
+  role(tenantId: ID!): UserTenantRole
+  sub: [String!]!
+  tenants: [UserTenantRole!]
+  tocReadAt: DateTime
+}
+
+type UserMetrics {
+  count(role: UserRoles): Int!
+}
+
+type UserMutations {
+  addTenants(roles: [TenantRoleInput!]!, userId: ID!): [UserTenantRole!]!
+  create(input: CreateUserInput!): User!
+  delete(id: ID!): Int!
+  generateAccessToken(input: CreateAccessTokenInput!, userId: ID!): AccessToken!
+  grantAdminRights(userId: ID!): User!
+  removeTenants(tenantIds: [ID!]!, userId: ID!): [UserTenantRole!]
+  revokeAdminRights(userId: ID!): User!
+  update(id: ID!, input: UpdateUserInput): User!
+}
+
+type UserQueries {
+  dev_search(email: String, firstName: String, lastName: String): [User!]
+  get(id: ID!): User
+  getMany: [User!]!
+  me: User
+}
+
+enum UserRole {
+  tenantAdmin
+  user
+}
+
+input UserRoleInput {
+  role: UserRole!
+  userId: ID!
+}
+
+enum UserRoles {
+  TenantAdmin
+  User
+}
+
+type UserTenantRole {
+  role: UserRole
+  tenant: Tenant!
+  tenantId: ID!
+  user: User!
+  userId: ID!
+}
+
+type VatType {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  percent: Float!
+  tenantId: ID!
+  updatedAt: DateTime
+}
+
+type VatTypeMutations {
+  create(input: CreateVatTypeInput!): VatType!
+  delete(id: ID!): Int!
+  update(id: ID!, input: UpdateVatTypeInput!): VatType!
+}
+
+type VersionInfo {
+  apiVersion: String!
+  commitSha: String!
+}
+
+enum VersionLabel {
+  current
+  draft
+  published
+}
+
+type VersionedRecordInfo {
+  createdAt: DateTime!
+  id: ID
+  label: VersionLabel!
+}
+
+type VersionedServices {
+  core: VersionInfo!
+  federated: Boolean!
+  metrics: VersionInfo
+  reporting: VersionInfo
+  search: VersionInfo
+  subscriptions: VersionInfo
+}
+
+type Video {
+  id: String!
+  playlist(type: String!): String
+  playlists: [String!]
+  thumbnails: [Image!]
+  title: String
+}
+
+type VideoContent {
+  videos: [Video!]
+}
+
+input VideoInput {
+  key: String!
+  thumbnails: [ImageInput!]
+  title: String
+}
+
+type VideoMutations {
+  addPlaylists(keys: [String!]!, videoId: String!): Video!
+}
+
+type Webhook {
+  concern: String!
+  createdAt: DateTime
+  event: String!
+  graphqlQuery: String
+  headers: [WebhookHeader!]
+  id: ID!
+  lastInvocation: WebhookInvocation
+  method: HttpMethod!
+  name: String!
+  pastInvocations(limit: Int = 50): [WebhookInvocation!]
+  tenant: Tenant
+  tenantId: ID!
+  updatedAt: DateTime
+  url: String!
+}
+
+type WebhookHeader {
+  name: String!
+  value: String!
+}
+
+input WebhookHeaderInput {
+  name: String!
+  value: String!
+}
+
+type WebhookInvocation {
+  end: DateTime
+  payload: JSON
+  response: WebhookInvocationResponse
+  start: DateTime
+}
+
+type WebhookInvocationResponse {
+  body: JSON
+  status: Int
+}
+
+type WebhookMetrics implements IObjectMetrics {
+  count(end: DateTime, start: DateTime): Int!
+}
+
+type WebhookMutations {
+  create(input: CreateWebhookInput!): Webhook!
+  delete(id: ID!): Int!
+  registerInvocation(
+    input: CreateWebhookInvocationInput
+    webhookId: ID!
+  ): WebhookInvocation!
+  update(id: ID!, input: UpdateWebhookInput!): Webhook!
+}
+
+type WebhookQueries {
+  get(id: ID!): Webhook
+  getMany(concern: String, event: String, tenantId: ID!): [Webhook!]
+}
